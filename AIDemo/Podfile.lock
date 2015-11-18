@@ -1,0 +1,16 @@
+PODS:
+  - AI (0.0.1):
+    - AI/Core (= 0.0.1)
+  - AI/Core (0.0.1)
+
+DEPENDENCIES:
+  - AI (from `../`)
+
+EXTERNAL SOURCES:
+  AI:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AI: b08769fa98f120dcd98f7f36b18ef7f8e301a16b
+
+COCOAPODS: 0.39.0

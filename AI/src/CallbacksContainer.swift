@@ -19,7 +19,9 @@ class CallbacksContainer<T> {
             state = object
             
             while onResolvecallbacks.count > 0 {
-                onResolvecallbacks.removeAtIndex(0)()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.onResolvecallbacks.removeAtIndex(0)()
+                })
             }
         }
         
@@ -28,7 +30,10 @@ class CallbacksContainer<T> {
     
     private func fire() {
         while callbacks.count > 0 && state != nil {
-            callbacks.removeAtIndex(0)(state!)
+            let q = self.callbacks.removeAtIndex(0)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                q(self.state!)
+            })
         }
     }
     

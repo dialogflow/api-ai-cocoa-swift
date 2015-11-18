@@ -28,6 +28,9 @@ class AITests: XCTestCase {
     
     func testExample() {
         
+        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try AVAudioSession.sharedInstance().setActive(true)
+        
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -37,22 +40,36 @@ class AITests: XCTestCase {
         
         let expectation = expectationWithDescription("q23")
         
-        let request = VoiceQueryRequest(
-            useVAD: true,
-            credentials: Credentials("3485a96fb27744db83e78b8c4bc9e7b7", "cb9693af-85ce-4fbf-844a-5563722fc27f"),
-            queryParameters: QueryParameters(),
-            session: NSURLSession.sharedSession(),
-            language: .English
-        ).success { (response) -> Void in
+        AI.configure("3485a96fb27744db83e78b8c4bc9e7b7", "cb9693af-85ce-4fbf-844a-5563722fc27f")
+        
+        AI.sharedService.VoiceRequest().success { (response) -> Void in
             print("")
         }.failure { (error) -> Void in
             print("")
         }
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-//            request.stopListening()
+        AI.sharedService.TextRequest("Hello").success { (response) -> Void in
+            
+        }.failure { (error) -> Void in
+            
         }
+        
+//        let request = VoiceQueryRequest(
+//            useVAD: true,
+//            credentials: Credentials("3485a96fb27744db83e78b8c4bc9e7b7", "cb9693af-85ce-4fbf-844a-5563722fc27f"),
+//            queryParameters: QueryParameters(),
+//            session: NSURLSession.sharedSession(),
+//            language: .English
+//        ).success { (response) -> Void in
+//            print("")
+//        }.failure { (error) -> Void in
+//            print("")
+//        }
+//        
+//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
+//        dispatch_after(delayTime, dispatch_get_main_queue()) {
+////            request.stopListening()
+//        }
         
         
         

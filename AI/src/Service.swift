@@ -32,7 +32,13 @@ public extension QueryService {
     }
 }
 
-public class Service: QueryService {
+public extension QueryService {
+    func VoiceRequest(useVAD: Bool = true) -> VoiceQueryRequest {
+        return VoiceQueryRequest(useVAD: useVAD, credentials: credentials, queryParameters: defaultQueryParameters, session: URLSession, language: language)
+    }
+}
+
+public class Service: BaseService, QueryService {
     public var credentials: Credentials
     public var URLSession: NSURLSession
     
