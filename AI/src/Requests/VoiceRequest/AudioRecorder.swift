@@ -6,7 +6,6 @@
 //  Copyright © 2015 Kuragin Dmitriy. All rights reserved.
 //
 
-import UIKit
 import AudioToolbox
 import AVFoundation
 
