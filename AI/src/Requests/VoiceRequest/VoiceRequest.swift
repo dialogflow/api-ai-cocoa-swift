@@ -166,6 +166,8 @@ public class VoiceQueryRequest: VoiceQueryRequestType, PrivateRequest, BoundaryC
     }
     
     public func resume(completionHandler: (RequestCompletion<ResponseType>) -> Void) -> Self {
+        // TODO: Replace run-function with the following call.
+//        (self as VoiceQueryRequest).privateResume(completionHandler)
         self.run(completionHandler)
         return self
     }

@@ -33,6 +33,7 @@ protocol Serializer {
 }
 
 func objectForKey<T>(key: String, dict: [String: AnyObject], ignoreMissingKey: Bool = false) throws -> T {
+    // TODO: The ignoreMissingKey is never used; remove if it's redundant.
     if let object = dict[key] {
         if let object = object as? T {
             return object

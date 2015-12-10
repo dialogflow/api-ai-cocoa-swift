@@ -70,7 +70,7 @@ class CrossZeroRateVAD: VAD {
     private let minSilenceLengthMilis: Float = 0.8;
 
     func reset() {
-        
+        // TODO: Provide a proper implementation.
     }
     
     private func czCount(samples: [Int16]) -> Int {
