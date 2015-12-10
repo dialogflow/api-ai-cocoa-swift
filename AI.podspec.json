@@ -33,8 +33,15 @@
                 ]
             },
 
+            "osx": {
+                "frameworks": [
+                    "Foundation"
+                ]
+            },
+
             "platforms": {
-                "ios": "7.0"
+                "ios": "7.0",
+                "osx": "10.9"
             }
         }
     ]
