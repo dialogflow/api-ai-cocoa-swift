@@ -7,7 +7,7 @@
     "authors": {
         "Dmitriy Kuragin": "kuragin@speaktoit.com"
     },
-    
+
     "source": {
         "git": "https://github.com/api-ai/api-ai-cocoa-swift.git",
         "tag": "v0.0.1"
@@ -15,13 +15,14 @@
 
     "requires_arc": true,
     "platforms": {
-        "ios": "7.0"
+        "ios": "7.0",
+        "osx": "10.9"
     },
 
     "subspecs": [
         {
             "name": "Core",
-            
+
             "source_files": [
                 "AI/src/**/*.swift"
             ],

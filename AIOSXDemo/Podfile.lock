@@ -1,7 +1,6 @@
 PODS:
   - AI (0.0.1):
     - AI/Core (= 0.0.1)
-  - AI/Core (0.0.1)
 
 DEPENDENCIES:
   - AI (from `../`)
