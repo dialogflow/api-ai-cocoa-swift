@@ -22,25 +22,27 @@ class TextRequestViewController: UIViewController {
                 self?.performSegueWithIdentifier("ShowResult", sender: self)
             })
         }.failure { (error) -> Void in
-            let alert = UIAlertController(
-                title: "Error",
-                message: error.localizedDescription,
-                preferredStyle: .Alert
-            )
-            
-            alert.addAction(
-                UIAlertAction(
-                    title: "Cancel",
-                    style: .Cancel,
-                    handler: .None
+            dispatch_async(dispatch_get_main_queue()) {
+                let alert = UIAlertController(
+                    title: "Error",
+                    message: error.localizedDescription,
+                    preferredStyle: .Alert
                 )
-            )
-            
-            self.presentViewController(
-                alert,
-                animated: true,
-                completion: .None
-            )
+                
+                alert.addAction(
+                    UIAlertAction(
+                        title: "Cancel",
+                        style: .Cancel,
+                        handler: .None
+                    )
+                )
+                
+                self.presentViewController(
+                    alert,
+                    animated: true,
+                    completion: .None
+                )
+            }
         }
     }
     
