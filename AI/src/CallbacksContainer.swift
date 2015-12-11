@@ -19,8 +19,9 @@ class CallbacksContainer<T> {
             state = object
             
             while onResolvecallbacks.count > 0 {
+                let callback = self.onResolvecallbacks.removeAtIndex(0)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.onResolvecallbacks.removeAtIndex(0)()
+                    callback()
                 })
             }
         }
