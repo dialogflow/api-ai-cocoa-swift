@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		814FCDEDB2AB39641B204B86 /* Pods_AIOSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA2F26F1FF3989B924EEA38 /* Pods_AIOSXDemo.framework */; };
 		CE5E742B1C1A79E400890183 /* TextRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E742A1C1A79E400890183 /* TextRequestViewController.swift */; };
+		CE5E742D1C1A8BF400890183 /* VoiceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E742C1C1A8BF400890183 /* VoiceRequestViewController.swift */; };
 		CEABF95C1C1990AB004BCF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABF95B1C1990AB004BCF62 /* AppDelegate.swift */; };
 		CEABF95E1C1990AB004BCF62 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABF95D1C1990AB004BCF62 /* LandingViewController.swift */; };
 		CEABF9601C1990AB004BCF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEABF95F1C1990AB004BCF62 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		3C7D49D1CB9FB37E0F633D82 /* Pods-AIOSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIOSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AIOSXDemo/Pods-AIOSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7739E50E38EF7232DAB45666 /* Pods-AIOSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIOSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AIOSXDemo/Pods-AIOSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE5E742A1C1A79E400890183 /* TextRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRequestViewController.swift; sourceTree = "<group>"; };
+		CE5E742C1C1A8BF400890183 /* VoiceRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRequestViewController.swift; sourceTree = "<group>"; };
 		CEABF9581C1990AB004BCF62 /* AIOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEABF95B1C1990AB004BCF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEABF95D1C1990AB004BCF62 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				CEABF95B1C1990AB004BCF62 /* AppDelegate.swift */,
 				CEABF95D1C1990AB004BCF62 /* LandingViewController.swift */,
 				CE5E742A1C1A79E400890183 /* TextRequestViewController.swift */,
+				CE5E742C1C1A8BF400890183 /* VoiceRequestViewController.swift */,
 				CEABF95F1C1990AB004BCF62 /* Assets.xcassets */,
 				CEABF9641C1990AC004BCF62 /* Info.plist */,
 				CEABF9611C1990AC004BCF62 /* Main.storyboard */,
@@ -332,6 +335,7 @@
 			files = (
 				CE5E742B1C1A79E400890183 /* TextRequestViewController.swift in Sources */,
 				CEABF95E1C1990AB004BCF62 /* LandingViewController.swift in Sources */,
+				CE5E742D1C1A8BF400890183 /* VoiceRequestViewController.swift in Sources */,
 				CEABF95C1C1990AB004BCF62 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
