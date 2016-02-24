@@ -6,7 +6,7 @@ use_frameworks!
 
 target 'AIDemo' do
 
-pod "AI", :path => "../"
+pod "AI" #, :path => "../"
 
 end
 
