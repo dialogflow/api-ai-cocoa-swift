@@ -9,8 +9,19 @@
 import Foundation
 
 public enum Language {
-    case English
-    case Russian
+    case English // en
+    case Spanish // es
+    case Russian // ru
+    case German // de
+    case Portuguese // pt
+    case Portuguese_Brazil // pt_br
+    case French /
+    case Italian
+    case Japanese
+    case Korean
+    case Chinese_Simplified
+    case Chinese_HongKong
+    case Chinese_Taiwan
 }
 
 extension Language {
@@ -18,8 +29,30 @@ extension Language {
         switch self {
         case .English:
             return "en"
+        case .Spanish:
+            return "es"
         case .Russian:
             return "ru"
+        case .German:
+            return "de"
+        case .Portuguese:
+            return "pt"
+        case .Portuguese_Brazil:
+            return "pt-BR"
+        case .French:
+            return "fr"
+        case .Italian:
+            return "it"
+        case .Japanese:
+            return "ja"
+        case .Korean:
+            return "ko"
+        case .Chinese_Simplified:
+            return "zh-CN"
+        case .Chinese_HongKong:
+            return "zh-HK"
+        case .Chinese_Taiwan:
+            return "zh-TW"
         }
     }
 }
@@ -84,26 +117,3 @@ extension QueryParameters {
         return parameters
     }
 }
-
-//extension QueryParameters {
-//    func language(language: Language) -> QueryParameters {
-//        var parameters = self
-//        parameters.language = language
-//        
-//        return parameters
-//    }
-//    
-//    func contexts(contexts: [Context]) -> QueryParameters {
-//        var parameters = self
-//        parameters.contexts = contexts
-//        
-//        return parameters
-//    }
-//    
-//    func addContext(context: Context) -> QueryParameters {
-//        var parameters = self
-//        parameters.contexts.append(context)
-//        
-//        return parameters
-//    }
-//}

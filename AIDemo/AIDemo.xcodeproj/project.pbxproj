@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		581409EF1C843D340014BBE8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581409EE1C843D340014BBE8 /* AVFoundation.framework */; };
 		58D1E4B31BFC6BB400D257AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E4B21BFC6BB400D257AA /* AppDelegate.swift */; };
 		58D1E4B81BFC6BB400D257AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D1E4B61BFC6BB400D257AA /* Main.storyboard */; };
 		58D1E4BA1BFC6BB400D257AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D1E4B91BFC6BB400D257AA /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		214B739D944FBA0038FC493D /* Pods-AIDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AIDemo/Pods-AIDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		34D2689E82A65A36E929393F /* Pods_AIDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AIDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		581409EE1C843D340014BBE8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		58D1E4AF1BFC6BB400D257AA /* AIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D1E4B21BFC6BB400D257AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58D1E4B71BFC6BB400D257AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				581409EF1C843D340014BBE8 /* AVFoundation.framework in Frameworks */,
 				EF171C8443E8B5AA44FA5594 /* Pods_AIDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +116,7 @@
 		F6538459F510446765E5D455 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				581409EE1C843D340014BBE8 /* AVFoundation.framework */,
 				34D2689E82A65A36E929393F /* Pods_AIDemo.framework */,
 			);
 			name = Frameworks;

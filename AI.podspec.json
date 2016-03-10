@@ -15,7 +15,7 @@
 
     "requires_arc": true,
     "platforms": {
-        "ios": "7.0",
+        "ios": "8.0",
         "osx": "10.9"
     },
 
@@ -27,20 +27,8 @@
                 "AI/src/**/*.swift"
             ],
 
-            "ios": {
-                "frameworks": [
-                    "Foundation"
-                ]
-            },
-
-            "osx": {
-                "frameworks": [
-                    "Foundation"
-                ]
-            },
-
             "platforms": {
-                "ios": "7.0",
+                "ios": "8.0",
                 "osx": "10.9"
             }
         }
