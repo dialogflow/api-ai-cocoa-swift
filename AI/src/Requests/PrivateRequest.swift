@@ -10,6 +10,10 @@ import Foundation
 
 let kBaseURLString = "https://api.api.ai/v1"
 
+protocol QueryContainer {
+    func query() -> String
+}
+
 protocol PrivateRequest: class {
     var method: String { get }
     var onceToken: dispatch_once_t { get set }
@@ -49,12 +53,15 @@ extension PrivateRequest where Self: Request {
         if let baseURL = NSURL(string: kBaseURLString) {
             let URLComponents = NSURLComponents(URL: baseURL.URLByAppendingPathComponent(self.method), resolvingAgainstBaseURL: false)
             if let URLComponents = URLComponents {
-                URLComponents.query = "v=20150910"
+                if let queryContainer = self as? QueryContainer {
+                    URLComponents.query = queryContainer.query()
+                }
+                
                 request.URL = URLComponents.URL
             }
         }
 
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         request.HTTPMethod = "POST"
         

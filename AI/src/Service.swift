@@ -38,7 +38,17 @@ public extension QueryService {
     }
 }
 
-public class Service: BaseService, QueryService {
+public protocol UserEntitiesService: BaseService {
+
+}
+
+public extension UserEntitiesService {
+    func UserEntitiesUploadRequest(entities: [UserEntity]) -> UserEntitiesRequest {
+        return UserEntitiesRequest(credentials: credentials, entities: entities, session: URLSession)
+    }
+}
+
+public class Service: BaseService, QueryService, UserEntitiesService {
     public var credentials: Credentials
     public var URLSession: NSURLSession
     

@@ -34,7 +34,7 @@ public protocol VoiceQueryRequestType: QueryRequest {
     func level(levelChangedHandler: LevelChangedHandler) -> Self
 }
 
-public class VoiceQueryRequest: VoiceQueryRequestType, PrivateRequest, BoundaryContainer {
+public class VoiceQueryRequest: VoiceQueryRequestType, PrivateRequest, BoundaryContainer, QueryContainer {
     public var useVAD: Bool = true
     
     typealias Generator = RandomBoundaryGenerator

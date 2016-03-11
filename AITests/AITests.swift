@@ -26,10 +26,10 @@ class AITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func t1estExample() {
         
-        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
-        try AVAudioSession.sharedInstance().setActive(true)
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try? AVAudioSession.sharedInstance().setActive(true)
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
@@ -42,11 +42,11 @@ class AITests: XCTestCase {
         
         AI.configure("3485a96fb27744db83e78b8c4bc9e7b7", "cb9693af-85ce-4fbf-844a-5563722fc27f")
         
-        AI.sharedService.VoiceRequest().success { (response) -> Void in
-            print("")
-        }.failure { (error) -> Void in
-            print("")
-        }
+//        AI.sharedService.VoiceRequest().success { (response) -> Void in
+//            print("")
+//        }.failure { (error) -> Void in
+//            print("")
+//        }
         
         AI.sharedService.TextRequest("Hello").success { (response) -> Void in
             
@@ -113,6 +113,51 @@ class AITests: XCTestCase {
 //
 //        }
         
+    }
+    
+    func testUserEntities() {
+        let expectation = expectationWithDescription("123")
+        
+        AI.configure("09604c7f91ce4cd8a4ede55eb5340b9d", "4c91a8e5-275f-4bf0-8f94-befa78ef92cd")
+        
+        let entities = [
+            UserEntity(name: "Application", entries: [
+                    UserEntityEntry(value: "Firefox", synonyms: ["Firefox"]),
+                    UserEntityEntry(value: "XCode", synonyms: ["XCode"]),
+                    UserEntityEntry(value: "Sublime Text", synonyms: ["Sublime Text"])
+                ])
+        ]
+        
+        AI.sharedService.UserEntitiesUploadRequest(entities).success { (response) -> Void in
+            print(response)
+            
+            expectation.fulfill()
+        }.failure { (error) -> Void in
+            print(error)
+            expectation.fulfill()
+            
+        }
+        
+        waitForExpectationsWithTimeout(30.0) { (error) -> Void in
+            
+        }
+        
+        
+        let expectation2 = expectationWithDescription("1231")
+        
+        let query = "Open application Firefox"
+        
+        AI.sharedService.TextRequest(query).success { (response) -> Void in
+            print(response)
+            expectation2.fulfill()
+        }.failure { (error) -> Void in
+            print(error)
+            expectation2.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(30.0) { (error) -> Void in
+            
+        }
     }
     
     func testPerformanceExample() {

@@ -39,7 +39,7 @@ public protocol TextQueryRequestType : QueryRequest {
     var query: TextQueryType { get }
 }
 
-public class TextQueryRequest: TextQueryRequestType, PrivateRequest {
+public class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContainer {
     //private properties
     
     weak var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? = .None

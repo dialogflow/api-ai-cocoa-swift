@@ -12,6 +12,8 @@
 		58391DEC1BF5D17700ED0C87 /* QueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58391DEB1BF5D17700ED0C87 /* QueryRequest.swift */; };
 		58391DEE1BF5D1B000ED0C87 /* TextQueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58391DED1BF5D1B000ED0C87 /* TextQueryRequest.swift */; };
 		58391DF01BF5D25400ED0C87 /* PrivateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58391DEF1BF5D25400ED0C87 /* PrivateRequest.swift */; };
+		5846F60B1C919E870067A9B5 /* UserEntitiesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846F60A1C919E870067A9B5 /* UserEntitiesRequest.swift */; };
+		5846F60E1C929B7D0067A9B5 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846F60D1C929B7D0067A9B5 /* SessionStorage.swift */; };
 		58D1E46E1BF9CC9700D257AA /* VoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E46D1BF9CC9700D257AA /* VoiceRequest.swift */; };
 		58D1E4701BF9CCA100D257AA /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E46F1BF9CCA100D257AA /* AudioRecorder.swift */; };
 		58D1E4721BF9CCAF00D257AA /* VoiceActivityDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E4711BF9CCAF00D257AA /* VoiceActivityDetection.swift */; };
@@ -46,6 +48,8 @@
 		58391DEB1BF5D17700ED0C87 /* QueryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryRequest.swift; sourceTree = "<group>"; };
 		58391DED1BF5D1B000ED0C87 /* TextQueryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextQueryRequest.swift; sourceTree = "<group>"; };
 		58391DEF1BF5D25400ED0C87 /* PrivateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRequest.swift; sourceTree = "<group>"; };
+		5846F60A1C919E870067A9B5 /* UserEntitiesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntitiesRequest.swift; sourceTree = "<group>"; };
+		5846F60D1C929B7D0067A9B5 /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		58D1E46D1BF9CC9700D257AA /* VoiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRequest.swift; sourceTree = "<group>"; };
 		58D1E46F1BF9CCA100D257AA /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		58D1E4711BF9CCAF00D257AA /* VoiceActivityDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceActivityDetection.swift; sourceTree = "<group>"; };
@@ -89,14 +93,24 @@
 		58391DE61BF5D15300ED0C87 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				5846F60C1C929B6F0067A9B5 /* Utils */,
 				58D1E46C1BF9CC8C00D257AA /* VoiceRequest */,
 				58391DE71BF5D16500ED0C87 /* Request.swift */,
 				58391DE81BF5D16500ED0C87 /* RequestUtilites.swift */,
 				58391DEB1BF5D17700ED0C87 /* QueryRequest.swift */,
 				58391DED1BF5D1B000ED0C87 /* TextQueryRequest.swift */,
 				58391DEF1BF5D25400ED0C87 /* PrivateRequest.swift */,
+				5846F60A1C919E870067A9B5 /* UserEntitiesRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		5846F60C1C929B6F0067A9B5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5846F60D1C929B7D0067A9B5 /* SessionStorage.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		58D1E46C1BF9CC8C00D257AA /* VoiceRequest */ = {
@@ -273,12 +287,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				58391DEC1BF5D17700ED0C87 /* QueryRequest.swift in Sources */,
+				5846F60B1C919E870067A9B5 /* UserEntitiesRequest.swift in Sources */,
 				58D1E4A41BF9F78400D257AA /* BufferedOutputStream.swift in Sources */,
 				58D1E46E1BF9CC9700D257AA /* VoiceRequest.swift in Sources */,
 				58D6093E1BF47CBA00464A87 /* CallbacksContainer.swift in Sources */,
 				58D609341BF35B1D00464A87 /* Credentials.swift in Sources */,
 				58391DF01BF5D25400ED0C87 /* PrivateRequest.swift in Sources */,
 				58D1E4721BF9CCAF00D257AA /* VoiceActivityDetection.swift in Sources */,
+				5846F60E1C929B7D0067A9B5 /* SessionStorage.swift in Sources */,
 				58D6093C1BF47A9C00464A87 /* QueryResponse.swift in Sources */,
 				58D1E4701BF9CCA100D257AA /* AudioRecorder.swift in Sources */,
 				58D609431BF4865300464A87 /* Completion.swift in Sources */,

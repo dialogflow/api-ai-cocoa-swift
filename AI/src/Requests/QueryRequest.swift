@@ -9,13 +9,13 @@
 import Foundation
 
 public enum Language {
-    case English // en
-    case Spanish // es
-    case Russian // ru
-    case German // de
-    case Portuguese // pt
-    case Portuguese_Brazil // pt_br
-    case French /
+    case English
+    case Spanish
+    case Russian
+    case German
+    case Portuguese
+    case Portuguese_Brazil
+    case French
     case Italian
     case Japanese
     case Korean
@@ -64,6 +64,12 @@ public protocol QueryRequest: Request {
     var language: Language { get }
 }
 
+extension QueryRequest where Self: QueryContainer {
+    func query() -> String {
+        return "v=20150910"
+    }
+}
+
 public struct Entry {
     public var value: String
     public var synonyms: [String]
@@ -78,7 +84,7 @@ public struct Entity {
 public struct QueryParameters {
     public var contexts: [Context] = []
     public var resetContexts: Bool = false
-    public var sessionId: String? = nil
+    public var sessionId: String? = SessionStorage.defaultSessionIdentifier
     public var timeZone: NSTimeZone? = NSTimeZone.localTimeZone()
     public var entities: [Entity] = []
     
