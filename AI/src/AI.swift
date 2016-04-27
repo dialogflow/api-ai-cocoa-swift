@@ -10,7 +10,14 @@ import Foundation
 
 public struct AI {
     public static var language: Language = .English
-    public static var credentials: Credentials? = .None
+    public static var credentials: Credentials? = .None {
+        didSet {
+            if let credentials = credentials {
+                self.sharedService.credentials = credentials
+            }
+        }
+    }
+    
     public static var defaultQueryParameters: QueryParameters = QueryParameters()
     public static var URLSession: NSURLSession = NSURLSession.sharedSession()
     
