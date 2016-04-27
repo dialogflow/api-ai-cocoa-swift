@@ -97,7 +97,7 @@ class QueueAudioRecorder: AudioRecorder {
             mBitsPerChannel: bitsPerChannel,
             mReserved: 0)
         
-        var audioQueue = AudioQueueRef()
+        var audioQueue: AudioQueueRef = nil
         
         do {
             try throwIfError(AudioQueueNewInput(&format,
@@ -115,7 +115,7 @@ class QueueAudioRecorder: AudioRecorder {
         
         do {
             for _ in 0..<kNumberRecordBuffers {
-                var buffer = AudioQueueBufferRef()
+                var buffer: AudioQueueBufferRef = nil
                 try throwIfError(AudioQueueAllocateBuffer(audioQueue, UInt32(bufferByteSize), &buffer), message: "Cannot allocate buffer")
                 try throwIfError(AudioQueueEnqueueBuffer(audioQueue, buffer, 0, nil), message: "Cannot enqueue audio buffer")
             }

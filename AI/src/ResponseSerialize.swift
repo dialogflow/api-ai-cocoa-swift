@@ -26,8 +26,8 @@ extension SerializeError: CompletionError {
 }
 
 protocol Serializer {
-    typealias Source = [String: AnyObject]
-    typealias Destination
+    associatedtype Source = [String: AnyObject]
+    associatedtype Destination
     
     func serialize(source: Source) throws -> Destination
 }

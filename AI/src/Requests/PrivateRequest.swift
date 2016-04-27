@@ -21,7 +21,7 @@ protocol PrivateRequest: class {
     
     var request: NSMutableURLRequest { get }
     
-    typealias ResponseType
+    associatedtype ResponseType
     var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? { get set }
     
     func runRequest() throws -> NSURLSessionDataTask
@@ -106,7 +106,7 @@ extension PrivateRequest where Self: QueryRequest {
 }
 
 protocol BoundaryContainer {
-    typealias Generator: BoundaryGenerator
+    associatedtype Generator: BoundaryGenerator
     var boundary: String { get }
 }
 

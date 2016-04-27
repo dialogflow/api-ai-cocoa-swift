@@ -28,7 +28,7 @@ public protocol Request: class {
     var credentials: Credentials { get }
     var session: NSURLSession { get }
     
-    typealias ResponseType
+    associatedtype ResponseType
     
     func resume(completionHandler: (RequestCompletion<ResponseType>) -> Void) -> Self
     

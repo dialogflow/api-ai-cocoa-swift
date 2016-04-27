@@ -58,7 +58,7 @@ extension Language {
 }
 
 public protocol QueryRequest: Request {
-    typealias ResponseType = QueryResponse
+    associatedtype ResponseType = QueryResponse
     
     var queryParameters: QueryParameters { get }
     var language: Language { get }
