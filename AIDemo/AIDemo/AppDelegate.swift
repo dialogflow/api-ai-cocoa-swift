@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        AI.configure("YOUR_CLIENT_ACCESS_TOKEN", "YOUR_SUBSCRIPTION_KEY")
-        AI.configure("3485a96fb27744db83e78b8c4bc9e7b7", "cb9693af-85ce-4fbf-844a-5563722fc27f")
+        AI.configure("YOUR_CLIENT_ACCESS_TOKEN")
         
         let session = AVAudioSession.sharedInstance()
     

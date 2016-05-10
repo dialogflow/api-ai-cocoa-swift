@@ -24,22 +24,22 @@ The API.AI iOS SDK makes it easy to integrate speech recognition with API.AI nat
 ## <a name="runningthedemoapp"></a>Running the Demo app
 * Run ```pod update``` in the AIDemo project folder.
 * Open **AIDemo.xworkspace** in Xcode.
-* In **AppDelegate** insert API key & subscription.
+* In **AppDelegate** insert API key.
   ```
-  AI.configure("YOUR_CLIENT_ACCESS_TOKEN", "YOUR_SUBSCRIPTION_KEY")
+  AI.configure("YOUR_CLIENT_ACCESS_TOKEN")
   ```
-  
+
   Note: an agent in **api.ai** should exist. Keys could be obtained on the agent's settings page.
-  
+
 * Define sample intents in the agent.
 * Run the app in Xcode.
   Inputs are possible with text and voice (experimental).
 
 
 ## <a name="integratingintoyourapp"></a>Integrating into your app
-### 1. Initialize CocoaPods 
+### 1. Initialize CocoaPods
   * Run  ```pod install``` in your project folder.
-  
+
   * Update **Podfile** to include:
     ```Podfile
     pod 'AI'
@@ -58,17 +58,17 @@ The API.AI iOS SDK makes it easy to integrate speech recognition with API.AI nat
             // ...
         }
   ```
-  
+
 ### 3. Init the SDK.
-  In the ```AppDelegate.swift```, add AI import: 
+  In the ```AppDelegate.swift```, add AI import:
   ```Swift
   import AI
   ```
-  
+
   In the AppDelegate.swift, add
   ```Swift
     // Define API.AI configuration here.
-    AI.configure("YOUR_CLIENT_ACCESS_TOKEN", "YOUR_SUBSCRIPTION_KEY")
+    AI.configure("YOUR_CLIENT_ACCESS_TOKEN")
   ```
 
 ### 4. Perform request using text.
@@ -82,7 +82,7 @@ The API.AI iOS SDK makes it easy to integrate speech recognition with API.AI nat
     }
 
   ```
-  
+
 ### 5. Or perform request using voice:
   ```Swift
     // Request using voice

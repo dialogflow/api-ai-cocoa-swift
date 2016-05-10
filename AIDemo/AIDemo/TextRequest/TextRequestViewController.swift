@@ -16,7 +16,6 @@ class TextRequestViewController: UIViewController {
     
     @IBAction func send(sender: AnyObject) {
         AI.sharedService.TextRequest(textField.text ?? "").success {[weak self] (response) -> Void in
-            print("IsMainThread: \(NSThread.isMainThread())")
             self?.response = response
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self?.performSegueWithIdentifier("ShowResult", sender: self)

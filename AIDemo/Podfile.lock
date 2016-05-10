@@ -1,12 +1,16 @@
 PODS:
-  - AI (0.0.2):
-    - AI/Core (= 0.0.2)
-  - AI/Core (0.0.2)
+  - AI (0.0.5):
+    - AI/Core (= 0.0.5)
+  - AI/Core (0.0.5)
 
 DEPENDENCIES:
-  - AI
+  - AI (from `../`)
+
+EXTERNAL SOURCES:
+  AI:
+    :path: ../
 
 SPEC CHECKSUMS:
-  AI: 37ca2b3706006e31dd35e627c0b9c9dac1f394ef
+  AI: 458eb473610631994a30fbe783d16b902365567f
 
 COCOAPODS: 0.39.0

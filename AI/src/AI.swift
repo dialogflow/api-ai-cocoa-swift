@@ -25,12 +25,12 @@ public struct AI {
         self.credentials = credentials
     }
     
-    public static func configure(clientAccessToken: String, _ subscribtionKey: String) {
-        self.configure(Credentials(clientAccessToken, subscribtionKey))
+    public static func configure(clientAccessToken: String) {
+        self.configure(Credentials(clientAccessToken))
     }
     
-    public static func configure(clientAccessToken clientAccessToken: String, subscribtionKey: String) {
-        self.configure(clientAccessToken, subscribtionKey)
+    public static func configure(clientAccessToken clientAccessToken: String) {
+        self.configure(clientAccessToken)
     }
 }
 
