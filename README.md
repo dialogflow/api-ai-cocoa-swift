@@ -48,7 +48,7 @@ The API.AI iOS SDK makes it easy to integrate speech recognition with API.AI nat
 * Run ```pod update```
 
 ### 2. Init audio session.
-  In the AppDelegate.m, add
+  In the AppDelegate.swift, add
   ```Swift
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
