@@ -9,58 +9,48 @@
 import Foundation
 
 enum SerializeError {
-    case MissingKey(String)
-    case TypeMismatch(String)
+    case missingKey(String)
+    case typeMismatch(String)
 }
 
-extension SerializeError: ErrorType {}
-extension SerializeError: CompletionError {
-    func asNSError() -> NSError {
-        switch self {
-        case .MissingKey(let key):
-            return NSError(forErrorString: "Missing key: \(key)")
-        case .TypeMismatch(let info):
-            return NSError(forErrorString: "Type mismatch: \(info)")
-        }
-    }
-}
+extension SerializeError: Error {}
 
 protocol Serializer {
-    associatedtype Source = [String: AnyObject]
+    associatedtype Source = [String: Any]
     associatedtype Destination
     
-    func serialize(source: Source) throws -> Destination
+    func serialize(_ source: Source) throws -> Destination
 }
 
-func objectForKey<T>(key: String, dict: [String: AnyObject], ignoreMissingKey: Bool = false) throws -> T {
+func objectForKey<T>(_ key: String, dict: [String: Any], ignoreMissingKey: Bool = false) throws -> T {
     // TODO: The ignoreMissingKey is never used; remove if it's redundant.
     if let object = dict[key] {
         if let object = object as? T {
             return object
         } else {
-            throw SerializeError.TypeMismatch(key)
+            throw SerializeError.typeMismatch(key)
         }
     } else {
-        throw SerializeError.MissingKey(key)
+        throw SerializeError.missingKey(key)
     }
 }
 
-func objectForKeyOrNull<T>(key: String, dict: [String: AnyObject]) -> T? {
+func objectForKeyOrNull<T>(_ key: String, dict: [String: Any]) -> T? {
     if let object = dict[key] {
         if let object = object as? T {
             return object
         } else {
-            return .None
+            return .none
         }
     } else {
-        return .None
+        return .none
     }
 }
 
 struct FulfillmentSerializer: Serializer {
     typealias Destination = Fulfillment
     
-    func serialize(source: FulfillmentSerializer.Source) throws -> FulfillmentSerializer.Destination {
+    func serialize(_ source: FulfillmentSerializer.Source) throws -> FulfillmentSerializer.Destination {
         let speech: String = try objectForKey("speech", dict: source)
         
         return Destination(speech: speech)
@@ -70,7 +60,7 @@ struct FulfillmentSerializer: Serializer {
 struct MetadataSerializer: Serializer {
     typealias Destination = Metadata
     
-    func serialize(source: MetadataSerializer.Source) throws -> MetadataSerializer.Destination {
+    func serialize(_ source: MetadataSerializer.Source) throws -> MetadataSerializer.Destination {
         let intentId: String? = objectForKeyOrNull("intentId", dict: source)
         let intentName: String? = objectForKeyOrNull("intentName", dict: source)
         
@@ -81,9 +71,9 @@ struct MetadataSerializer: Serializer {
 struct ContextSerializer: Serializer {
     typealias Destination = Context
     
-    func serialize(source: ContextSerializer.Source) throws -> ContextSerializer.Destination {
+    func serialize(_ source: ContextSerializer.Source) throws -> ContextSerializer.Destination {
         let name: String = try objectForKey("name", dict: source)
-        let parameters: [String:AnyObject] = try objectForKey("parameters", dict: source)
+        let parameters: [String:Any] = try objectForKey("parameters", dict: source)
         
         return Destination(name: name, parameters: parameters)
     }
@@ -92,14 +82,14 @@ struct ContextSerializer: Serializer {
 struct ResultSerializer: Serializer {
     typealias Destination = Result
     
-    func serialize(source: ResultSerializer.Source) throws -> ResultSerializer.Destination {
+    func serialize(_ source: ResultSerializer.Source) throws -> ResultSerializer.Destination {
         let sourceResult: String = try objectForKey("source", dict: source)
         let resolvedQuery: String = try objectForKey("resolvedQuery", dict: source)
         let action: String? = objectForKeyOrNull("action", dict: source)
         
-        let parameters: [String:AnyObject]? = try? objectForKey("parameters", dict: source)
+        let parameters: [String:Any]? = try? objectForKey("parameters", dict: source)
         
-        let contextsArray: [[String:AnyObject]]? = try? objectForKey("contexts", dict: source)
+        let contextsArray: [[String:Any]]? = try? objectForKey("contexts", dict: source)
         let contextSerializer = ContextSerializer()
         
         let contexts = try contextsArray.map { (object) -> [Context] in
@@ -108,7 +98,7 @@ struct ResultSerializer: Serializer {
             })
         }
         
-        let fulfillmentObject: [String:AnyObject]? = try? objectForKey("fulfillment", dict: source)
+        let fulfillmentObject: [String:Any]? = try? objectForKey("fulfillment", dict: source)
         
         let fulfillment = try fulfillmentObject.map({ (obj) -> Fulfillment in
             try FulfillmentSerializer().serialize(obj)
@@ -131,15 +121,15 @@ struct ResultSerializer: Serializer {
 struct ResponseSerializer: Serializer {
     typealias Destination = QueryResponse
     
-    func serialize(source: ResponseSerializer.Source) throws -> ResponseSerializer.Destination {
+    func serialize(_ source: ResponseSerializer.Source) throws -> ResponseSerializer.Destination {
         let identifier: String = try objectForKey("id", dict: source)
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         
-        guard let timestamp: NSDate = dateFormatter.dateFromString(try objectForKey("timestamp", dict: source)) else {
-            throw SerializeError.TypeMismatch("timestamp")
+        guard let timestamp: Date = dateFormatter.date(from: try objectForKey("timestamp", dict: source)) else {
+            throw SerializeError.typeMismatch("timestamp")
         }
         
         let result = try ResultSerializer().serialize(try objectForKey("result", dict: source))

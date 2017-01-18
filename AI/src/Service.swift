@@ -10,7 +10,7 @@ import Foundation
 
 public protocol BaseService {
     var credentials: Credentials { get }
-    var URLSession: NSURLSession { get }
+    var URLSession: Foundation.URLSession { get }
 }
 
 public protocol QueryService: BaseService {
@@ -19,22 +19,16 @@ public protocol QueryService: BaseService {
 }
 
 public extension QueryService {
-    func TextRequest(query: TextQueryType) -> TextQueryRequest {
+    func TextRequest(_ query: TextQueryType) -> TextQueryRequest {
         return TextQueryRequest(query: query, credentials: credentials, queryParameters: defaultQueryParameters, session: URLSession, language: language)
     }
     
-    func TextRequest(query: String) -> TextQueryRequest {
-        return TextRequest(.One(query))
+    func TextRequest(_ query: String) -> TextQueryRequest {
+        return TextRequest(.one(query))
     }
     
-    func TextRequest(query: [String]) -> TextQueryRequest {
-        return TextRequest(.Array(query))
-    }
-}
-
-public extension QueryService {
-    func VoiceRequest(useVAD: Bool = true) -> VoiceQueryRequest {
-        return VoiceQueryRequest(useVAD: useVAD, credentials: credentials, queryParameters: defaultQueryParameters, session: URLSession, language: language)
+    func TextRequest(_ query: [String]) -> TextQueryRequest {
+        return TextRequest(.array(query))
     }
 }
 
@@ -43,20 +37,20 @@ public protocol UserEntitiesService: BaseService {
 }
 
 public extension UserEntitiesService {
-    func UserEntitiesUploadRequest(entities: [UserEntity]) -> UserEntitiesRequest {
+    func UserEntitiesUploadRequest(_ entities: [UserEntity]) -> UserEntitiesRequest {
         return UserEntitiesRequest(credentials: credentials, entities: entities, session: URLSession)
     }
 }
 
-public class Service: BaseService, QueryService, UserEntitiesService {
-    public var credentials: Credentials
-    public var URLSession: NSURLSession
+open class Service: BaseService, QueryService, UserEntitiesService {
+    open var credentials: Credentials
+    open var URLSession: Foundation.URLSession
     
-    public let language: Language
+    open let language: Language
     
-    public var defaultQueryParameters: QueryParameters
+    open var defaultQueryParameters: QueryParameters
     
-    init(credentials: Credentials, URLSession: NSURLSession, defaultQueryParameters: QueryParameters, language: Language) {
+    init(credentials: Credentials, URLSession: Foundation.URLSession, defaultQueryParameters: QueryParameters, language: Language) {
         self.URLSession = URLSession
         self.credentials = credentials
         

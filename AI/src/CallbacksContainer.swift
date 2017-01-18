@@ -9,18 +9,18 @@
 import Foundation
 
 class CallbacksContainer<T> {
-    private var callbacks: [(T) -> Void] = []
-    private var onResolvecallbacks: [() -> Void] = []
+    fileprivate var callbacks: [(T) -> Void] = []
+    fileprivate var onResolvecallbacks: [() -> Void] = []
     
-    private var state: T?
+    fileprivate var state: T?
     
-    func resolve(object: T) {
+    func resolve(_ object: T) {
         if state == nil {
             state = object
             
             while onResolvecallbacks.count > 0 {
-                let callback = self.onResolvecallbacks.removeAtIndex(0)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let callback = self.onResolvecallbacks.remove(at: 0)
+                DispatchQueue.main.async(execute: { () -> Void in
                     callback()
                 })
             }
@@ -29,20 +29,20 @@ class CallbacksContainer<T> {
         self.fire()
     }
     
-    private func fire() {
+    fileprivate func fire() {
         while callbacks.count > 0 && state != nil {
-            let q = self.callbacks.removeAtIndex(0)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let q = self.callbacks.remove(at: 0)
+            DispatchQueue.main.async(execute: { () -> Void in
                 q(self.state!)
             })
         }
     }
     
-    func onResolve(fn: () -> Void) {
+    func onResolve(_ fn: @escaping () -> Void) {
         onResolvecallbacks.append(fn)
     }
     
-    func put(fn: (T) -> Void) {
+    func put(_ fn: @escaping (T) -> Void) {
         callbacks.append(fn)
         
         self.fire()

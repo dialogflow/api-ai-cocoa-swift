@@ -38,9 +38,9 @@ class AITests: XCTestCase {
             print("error")
         }
         
-        let expectation = expectationWithDescription("q23")
+        let expectation = self.expectation(description: "q23")
         
-        AI.configure("3485a96fb27744db83e78b8c4bc9e7b7", "cb9693af-85ce-4fbf-844a-5563722fc27f")
+        AI.configure("3485a96fb27744db83e78b8c4bc9e7b7")
         
 //        AI.sharedService.VoiceRequest().success { (response) -> Void in
 //            print("")
@@ -91,7 +91,7 @@ class AITests: XCTestCase {
 //            print("")
 //        }
         
-        waitForExpectationsWithTimeout(30.0) { (error) -> Void in
+        waitForExpectations(timeout: 30.0) { (error) -> Void in
             
         }
 
@@ -116,9 +116,9 @@ class AITests: XCTestCase {
     }
     
     func testUserEntities() {
-        let expectation = expectationWithDescription("123")
+        let expectation = self.expectation(description: "123")
         
-        AI.configure("09604c7f91ce4cd8a4ede55eb5340b9d", "4c91a8e5-275f-4bf0-8f94-befa78ef92cd")
+        AI.configure("09604c7f91ce4cd8a4ede55eb5340b9d")
         
         let entities = [
             UserEntity(name: "Application", entries: [
@@ -138,12 +138,12 @@ class AITests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(30.0) { (error) -> Void in
+        waitForExpectations(timeout: 30.0) { (error) -> Void in
             
         }
         
         
-        let expectation2 = expectationWithDescription("1231")
+        let expectation2 = self.expectation(description: "1231")
         
         let query = "Open application Firefox"
         
@@ -155,14 +155,14 @@ class AITests: XCTestCase {
             expectation2.fulfill()
         }
         
-        waitForExpectationsWithTimeout(30.0) { (error) -> Void in
+        waitForExpectations(timeout: 30.0) { (error) -> Void in
             
         }
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

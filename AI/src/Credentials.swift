@@ -22,8 +22,8 @@ public struct Credentials {
 
 private let kAuthorizationHTTPHeaderFieldName = "Authorization"
 
-internal extension NSMutableURLRequest {
-    func authenticate(credentials: Credentials) {
+internal extension URLRequest {
+    mutating func authenticate(_ credentials: Credentials) {
         self.addValue("Bearer \(credentials.clientAccessToken)", forHTTPHeaderField: kAuthorizationHTTPHeaderFieldName);
     }
 }

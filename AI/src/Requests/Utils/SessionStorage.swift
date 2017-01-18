@@ -8,30 +8,24 @@
 
 import Foundation
 
+fileprivate let kSessionIdentifierStoreKey = "kSessionIdentifierStoreKey"
+
 public struct SessionStorage {
-    public static var defaultSessionIdentifier: String {
-        struct Static {
-            static var kSessionIdentifierStoreKey = "kSessionIdentifierStoreKey"
-            static var defaultSessionIdentifier: String? = .None
-            static var dispatch_once_token: dispatch_once_t = 0
-        }
+    public static var defaultSessionIdentifier: String = SessionStorage.retrieveDefaultSessionIdentifier()
+    
+    fileprivate static func retrieveDefaultSessionIdentifier() -> String {
+        let userDefaults = UserDefaults.standard
         
-        
-        dispatch_once(&Static.dispatch_once_token) { () -> Void in
-            let userDefaults = NSUserDefaults.standardUserDefaults()
+        if let storedSessionIdentifier = userDefaults.object(forKey: kSessionIdentifierStoreKey) as? String {
+            return storedSessionIdentifier
+        } else {
+            let generatedSessionIdentifier = NSUUID().uuidString
+
+            userDefaults.set(generatedSessionIdentifier, forKey: kSessionIdentifierStoreKey)
+            userDefaults.synchronize()
             
-            if let storedSessionIdentifier = userDefaults.objectForKey(Static.kSessionIdentifierStoreKey) as? String {
-                Static.defaultSessionIdentifier = storedSessionIdentifier
-            } else {
-                let generatedSessionIdentifier = NSUUID().UUIDString
-                
-                userDefaults.setObject(generatedSessionIdentifier, forKey: Static.kSessionIdentifierStoreKey)
-                userDefaults.synchronize()
-            
-                Static.defaultSessionIdentifier = generatedSessionIdentifier
-            }
+            return generatedSessionIdentifier
         }
-        
-        return Static.defaultSessionIdentifier!
+
     }
 }

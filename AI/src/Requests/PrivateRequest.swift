@@ -16,54 +16,55 @@ protocol QueryContainer {
 
 protocol PrivateRequest: class {
     var method: String { get }
-    var onceToken: dispatch_once_t { get set }
-    var dataTask: NSURLSessionDataTask? { get set }
+    var started: Bool { get set }
+    var dataTask: URLSessionDataTask? { get set }
     
-    var request: NSMutableURLRequest { get }
+    var request: URLRequest { get }
     
     associatedtype ResponseType
     var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? { get set }
     
-    func runRequest() throws -> NSURLSessionDataTask
+    func runRequest() throws -> URLSessionDataTask
     
-    func privateResume(completionHandler: (RequestCompletion<ResponseType>) -> Void);
+    func privateResume(_ completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void);
 }
 
 extension PrivateRequest {
-    func privateResume(completionHandler: (RequestCompletion<ResponseType>) -> Void) {
-        var token = onceToken
-        dispatch_once(&token) {[unowned self] () -> Void in
+    func privateResume(_ completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) {
+        callbacks?.put(completionHandler)
+        
+        if (!started) {
+            started = true
+            
             do {
                 try self.dataTask = self.runRequest()
             } catch let error as NSError {
-                self.callbacks?.resolve(.Failure(error))
+                self.callbacks?.resolve(.failure(error))
             }
         }
-        
-        onceToken = token
-        
-        callbacks?.put(completionHandler)
     }
 }
 
 extension PrivateRequest where Self: Request {
-    var request: NSMutableURLRequest {
-        let request = NSMutableURLRequest()
+    var request: URLRequest {
+        guard let baseURL = URL(string: kBaseURLString) else {
+            fatalError("Could not get URL from URL string for base URL.")
+        }
         
-        if let baseURL = NSURL(string: kBaseURLString) {
-            let URLComponents = NSURLComponents(URL: baseURL.URLByAppendingPathComponent(self.method), resolvingAgainstBaseURL: false)
-            if let URLComponents = URLComponents {
-                if let queryContainer = self as? QueryContainer {
-                    URLComponents.query = queryContainer.query()
-                }
-                
-                request.URL = URLComponents.URL
+        var request = URLRequest(url: baseURL)
+        
+        let components = URLComponents(url: baseURL.appendingPathComponent(self.method), resolvingAgainstBaseURL: false)
+        if var components = components {
+            if let queryContainer = self as? QueryContainer {
+                components.query = queryContainer.query()
             }
+            
+            request.url = components.url
         }
 
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
-        request.HTTPMethod = "POST"
+        request.httpMethod = "POST"
         
         request.authenticate(credentials)
         
@@ -71,36 +72,38 @@ extension PrivateRequest where Self: Request {
     }
 }
 
-func += <KeyType, ValueType> (inout left: Dictionary<KeyType, ValueType>, right: Dictionary<KeyType, ValueType>) {
+func += <KeyType, ValueType> (left: inout Dictionary<KeyType, ValueType>, right: Dictionary<KeyType, ValueType>) {
     for (k, v) in right {
         left.updateValue(v, forKey: k)
     }
 }
 
 extension PrivateRequest where Self: QueryRequest {
-    func jsonRequestParameters(additionalParameters: [String:AnyObject] = [String:AnyObject]()) throws -> NSData {
+    func jsonRequestParameters(_ additionalParameters: [String:AnyObject] = [String:AnyObject]()) throws -> Data {
         var parameters = queryParameters.jsonObject()
-        parameters["lang"] = language.stringValue
+        parameters["lang"] = language.stringValue as AnyObject?
         
         parameters += additionalParameters
         
         
-        let jsonBody = try NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonBody = try JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions(rawValue: 0))
         
         return jsonBody
     }
 }
 
 extension PrivateRequest where Self: QueryRequest {
-    func handleQueryResponse(data: NSData?, _ response: NSURLResponse?, _ error: NSError?) -> RequestCompletion<QueryResponse> {
-        let response = handle(data, response, error).next(serializeJSON).next(validateObject).next(serializeObject)
+    func handleQueryResponse(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> RequestCompletion<QueryResponse> {
+        let response = handle(data, response, error)
+            .next(serializeJSON)
+            .next(validateObject)
+            .next(serializeObject)
         
         switch response {
-        case .Success(let object):
-            return .Success(object)
-        case .Failure(let error):
-            let nsError = error.asNSError()
-            return .Failure(nsError)
+        case .success(let object):
+            return .success(object)
+        case .failure(let error):
+            return .failure(error)
         }
     }
 }

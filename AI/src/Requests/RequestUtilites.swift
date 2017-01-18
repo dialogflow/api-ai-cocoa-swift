@@ -8,74 +8,72 @@
 
 import Foundation
 
-func handle(data: NSData?, _ response: NSURLResponse?, _ error: NSError?) -> Completion<NSData> {
+func handle(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Completion<Data> {
     if let error = error {
-        return .Failure(error)
+        return .failure(error)
     }
     
-    guard response != .None else {
-        return .Failure(NSError(code: .ResponseObjectEmpty, message: "NSURLResponse is empty."))
+    guard response != .none else {
+        return .failure(NSError(code: .responseObjectEmpty, message: "NSURLResponse is empty."))
     }
     
-    guard let response = response as? NSHTTPURLResponse else {
-        return .Failure(NSError(code: .WrongResponseObjectType, message: "Wrong response type. Expected NSHTTPURLResponse."))
+    guard let response = response as? HTTPURLResponse else {
+        return .failure(NSError(code: .wrongResponseObjectType, message: "Wrong response type. Expected NSHTTPURLResponse."))
     }
     
-    let acceptableStatusCodes = NSIndexSet(indexesInRange: NSRange(location: 200, length: 100))
+    let acceptableStatusCodes = IndexSet(integersIn: NSRange(location: 200, length: 100).toRange() ?? 0..<0)
     
-    if !acceptableStatusCodes.containsIndex(response.statusCode) {
-        return .Failure(NSError(forHTTPStatusCode: response.statusCode))
+    if !acceptableStatusCodes.contains(response.statusCode) {
+        return .failure(NSError(forHTTPStatusCode: response.statusCode))
     }
     
-    guard let mimeType = response.MIMEType else {
-        return .Failure(NSError(code: .MIMETypeEmpty, message: "MIMEType connot be empty"))
+    guard let mimeType = response.mimeType else {
+        return .failure(NSError(code: .mimeTypeEmpty, message: "MIMEType connot be empty"))
     }
     
     let acceptableContentTypes = Set(arrayLiteral: "application/json", "text/json", "text/javascript")
     
     if !acceptableContentTypes.contains(mimeType) {
-        return .Failure(NSError(code: .UnexpectedMIMEType, message: "Wrong MIMEType type: \(mimeType). Expected \(acceptableContentTypes)"))
+        return .failure(NSError(code: .unexpectedMIMEType, message: "Wrong MIMEType type: \(mimeType). Expected \(acceptableContentTypes)"))
     }
     
     guard let data = data else {
-        return .Failure(NSError(code: .ResponseDataEmpty, message: "Response data is empty."))
+        return .failure(NSError(code: .responseDataEmpty, message: "Response data is empty."))
     }
     
-    return .Success(data)
+    return .success(data)
 }
 
-func serializeJSON(data: NSData) -> Completion<AnyObject> {
+func serializeJSON(_ data: Data) -> Completion<Any> {
     do {
-        let object = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
-        return .Success(object)
+        let object = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
+        return .success(object)
     } catch let error as NSError {
-        return .Failure(error)
+        return .failure(error)
     }
 }
 
-func validateObject(object: AnyObject) -> Completion<[String: AnyObject]> {
-    if let object = object as? [String: AnyObject] {
-        if let code = JSON(object)["status"]["code"].int {
+func validateObject(_ object: Any) -> Completion<[String: Any]> {
+    if let object = object as? [String: Any] {
+        if let code = JSON(object as JSONAny?)["status"]["code"].int {
             if code == 200 {
-                return .Success(object)
+                return .success(object)
             } else {
-                return .Failure(NSError(forHTTPStatusCode: code))
+                return .failure(NSError(forHTTPStatusCode: code))
             }
         } else {
-            return .Failure(SerializeError.MissingKey("status.code"))
+            return .failure(SerializeError.missingKey("status.code"))
         }
     } else {
-        return .Failure(SerializeError.TypeMismatch("root"))
+        return .failure(SerializeError.typeMismatch("root"))
     }
 }
 
-func serializeObject(object: [String: AnyObject]) -> Completion<QueryResponse> {
+func serializeObject(_ object: [String: Any]) -> Completion<QueryResponse> {
     do {
         let response = try ResponseSerializer().serialize(object)
-        return .Success(response)
-    } catch let error as SerializeError {
-        return .Failure(error.asNSError())
-    } catch let error as NSError {
-        return .Failure(error)
+        return .success(response)
+    } catch let error {
+        return .failure(error)
     }
 }

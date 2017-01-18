@@ -19,7 +19,7 @@ public struct Metadata {
 
 public struct Context {
     public let name: String
-    public let parameters: [String:AnyObject]
+    public let parameters: [String: Any]
 }
 
 public struct Result {
@@ -27,7 +27,7 @@ public struct Result {
     public let resolvedQuery: String
     public let action: String?
     
-    public let parameters: [String: AnyObject]?
+    public let parameters: [String: Any]?
     public let contexts: [Context]?
     
     public let fulfillment: Fulfillment?
@@ -36,7 +36,7 @@ public struct Result {
 
 public struct QueryResponse {
     public let identifier: String
-    public let timestamp: NSDate
+    public let timestamp: Date
 
     public let result: Result
 }

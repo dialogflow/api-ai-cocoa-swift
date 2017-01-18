@@ -9,17 +9,17 @@
 import Foundation
 
 public enum TextQueryType {
-    case One(String)
-    case Array([String])
+    case one(String)
+    case array([String])
 }
 
 extension TextQueryType {
     var JSON: AnyObject {
         switch self {
-        case .One(let object):
-            return object
-        case Array(let object):
-            return object
+        case .one(let object):
+            return object as AnyObject
+        case .array(let object):
+            return object as AnyObject
         }
     }
 }
@@ -27,10 +27,10 @@ extension TextQueryType {
 extension TextQueryType {
     func jsonObject() -> AnyObject {
         switch self {
-        case .One(let object):
-            return object
-        case Array(let object):
-            return object
+        case .one(let object):
+            return object as AnyObject
+        case .array(let object):
+            return object as AnyObject
         }
     }
 }
@@ -39,29 +39,30 @@ public protocol TextQueryRequestType : QueryRequest {
     var query: TextQueryType { get }
 }
 
-public class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContainer {
+open class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContainer {
+    internal var started: Bool = false
+
     //private properties
     
-    weak var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? = .None
+    weak var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? = .none
     
     let method: String = "query"
-    var onceToken: dispatch_once_t = 0
-    var dataTask: NSURLSessionDataTask? = nil
+    var dataTask: URLSessionDataTask? = nil
     
     // public properties
     
     public typealias ResponseType = QueryResponse
     
-    public let credentials: Credentials
-    public let session: NSURLSession
+    open let credentials: Credentials
+    open let session: URLSession
     
-    public var queryParameters: QueryParameters
+    open var queryParameters: QueryParameters
     
-    public let query: TextQueryType
+    open let query: TextQueryType
     
-    public let language: Language
+    open let language: Language
     
-    public init(query: TextQueryType, credentials: Credentials, queryParameters: QueryParameters, session: NSURLSession, language: Language) {
+    public init(query: TextQueryType, credentials: Credentials, queryParameters: QueryParameters, session: URLSession, language: Language) {
         self.query = query
         self.credentials = credentials
         self.session = session
@@ -69,47 +70,47 @@ public class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContai
         self.language = language
     }
     
-    public convenience init(query: String, credentials: Credentials, queryParameters: QueryParameters, session: NSURLSession, language: Language) {
-        self.init(query: .One(query), credentials: credentials, queryParameters: queryParameters, session: session, language: language)
+    public convenience init(query: String, credentials: Credentials, queryParameters: QueryParameters, session: URLSession, language: Language) {
+        self.init(query: .one(query), credentials: credentials, queryParameters: queryParameters, session: session, language: language)
     }
     
-    public convenience init(query: [String], credentials: Credentials, queryParameters: QueryParameters, session: NSURLSession, language: Language) {
-        self.init(query: .Array(query), credentials: credentials, queryParameters: queryParameters, session: session, language: language)
+    public convenience init(query: [String], credentials: Credentials, queryParameters: QueryParameters, session: URLSession, language: Language) {
+        self.init(query: .array(query), credentials: credentials, queryParameters: queryParameters, session: session, language: language)
     }
     
-    func runRequest() throws -> NSURLSessionDataTask {
+    func runRequest() throws -> URLSessionDataTask {
         let callbacksContainer = CallbacksContainer<RequestCompletion<ResponseType>>()
         
         self.callbacks = callbacksContainer
         
-        let request = self.request
+        var request = self.request
         
-        request.HTTPBody = try self.jsonRequestParameters(["query": query.jsonObject()])
+        request.httpBody = try self.jsonRequestParameters(["query": query.jsonObject()])
         
-        let dataTask = self.session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+        let dataTask = self.session.dataTask(with: request) { (data, response, error) in
             callbacksContainer.resolve(self.handleQueryResponse(data, response, error))
-        })
+        }
         
         dataTask.resume()
         
         return dataTask
     }
     
-    private func run(completionHandler: (RequestCompletion<ResponseType>) -> Void) {
+    fileprivate func run(_ completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) {
         self.privateResume(completionHandler)
     }
     
-    public func resume(completionHandler: (RequestCompletion<ResponseType>) -> Void) -> Self {
+    open func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self {
         // TODO: Replace run-function with the following call.
 //        (self as TextQueryRequest).privateResume(completionHandler)
         self.run(completionHandler)
         return self
     }
     
-    public func cancel() {
-        let cancelError = NSError(code: .RequestUserCancelled, message: "Request user cancelled.")
+    open func cancel() {
+        let cancelError = NSError(code: .requestUserCancelled, message: "Request user cancelled.")
         
-        callbacks?.resolve(.Failure(cancelError))
+        callbacks?.resolve(.failure(cancelError))
         
         dataTask?.cancel()
     }

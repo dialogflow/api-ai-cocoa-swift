@@ -9,47 +9,47 @@
 import Foundation
 
 public enum RequestCompletion<T> {
-    case Success(T)
-    case Failure(NSError)
+    case success(T)
+    case failure(Error)
 }
 
 extension Completion {
     func toRequestCompletion() -> RequestCompletion<A> {
         switch self {
-        case .Success(let object):
-            return .Success(object)
-        case .Failure(let error):
-            return .Failure(error.asNSError())
+        case .success(let object):
+            return .success(object)
+        case .failure(let error):
+            return .failure(error)
         }
     }
 }
 
 public protocol Request: class {
     var credentials: Credentials { get }
-    var session: NSURLSession { get }
+    var session: URLSession { get }
     
     associatedtype ResponseType
     
-    func resume(completionHandler: (RequestCompletion<ResponseType>) -> Void) -> Self
+    func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self
     
     func cancel()
 }
 
 public extension Request {
     typealias SuccessCompletionHandler = (ResponseType) -> Void
-    typealias FailureCompletionHandler = (NSError) -> Void
+    typealias FailureCompletionHandler = (Error) -> Void
     
-    func success(completionHandler: SuccessCompletionHandler) -> Self {
+    func success(completionHandler: @escaping SuccessCompletionHandler) -> Self {
         return self.resume { (completion) -> Void in
-            if case .Success(let object) = completion {
+            if case .success(let object) = completion {
                 completionHandler(object)
             }
         }
     }
     
-    func failure(completionHandler: FailureCompletionHandler) -> Self {
+    func failure(completionHandler: @escaping FailureCompletionHandler) -> Self {
         return self.resume { (completion) -> Void in
-            if case .Failure(let error) = completion {
+            if case .failure(let error) = completion {
                 completionHandler(error)
             }
         }

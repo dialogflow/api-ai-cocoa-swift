@@ -8,49 +8,40 @@
 
 import Foundation
 
-protocol CompletionError {
-    func asNSError() -> NSError
-}
+
+typealias CompletionError = Error
 
 enum Completion<A> {
-    case Success(A)
-    case Failure(CompletionError)
+    case success(A)
+    case failure(CompletionError)
 }
 
 extension Completion {
-    func next<B>(f: A -> Completion<B>) -> Completion<B>{
+    func next<B>(_ f: (A) -> Completion<B>) -> Completion<B>{
         switch self {
-        case .Success(let x):
+        case .success(let x):
             return f(x)
-        case .Failure(let error):
-            return .Failure(error)
+        case .failure(let error):
+            return .failure(error)
         }
     }
 }
 
 extension Completion {
-    func next(error: CompletionError?) -> Completion<A> {
+    func next(_ error: CompletionError?) -> Completion<A> {
         switch self {
-        case .Success(let x):
+        case .success(let x):
             if let error = error {
-                return .Failure(error)
+                return .failure(error)
             } else {
-                return .Success(x)
+                return .success(x)
             }
-        case .Failure(let error):
-            return .Failure(error)
+        case .failure(let error):
+            return .failure(error)
         }
     }
 }
 
-extension NSError: CompletionError {
-    func asNSError() -> NSError {
-        return self
-    }
-}
-
-extension String: CompletionError {
-    func asNSError() -> NSError {
-        return NSError(forErrorString: self)
-    }
+struct CompletionStringError: Error {
+    let errorMessage: String
 }

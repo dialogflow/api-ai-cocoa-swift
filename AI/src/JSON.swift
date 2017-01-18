@@ -16,13 +16,13 @@ typealias JSONNumber = NSNumber
 typealias JSONNull = NSNull
 
 enum JSON {
-    case Object(JSONObject)
-    case Array(JSONArray)
-    case Number(JSONNumber)
-    case JString(JSONString)
+    case object(JSONObject)
+    case array(JSONArray)
+    case number(JSONNumber)
+    case jString(JSONString)
     
-    case Null
-    case None
+    case null
+    case none
     
     init(_ object: JSONAny?) {
         self.init(object: object)
@@ -32,62 +32,62 @@ enum JSON {
         if let object = object {
             switch object {
             case let object as JSONObject:
-                self = .Object(object)
+                self = .object(object)
             case let object as JSONArray:
-                self = .Array(object)
+                self = .array(object)
             case let object as JSONNumber:
-                self = .Number(object)
+                self = .number(object)
             case let object as JSONString:
-                self = .JString(object)
+                self = .jString(object)
             case _ as JSONNull:
-                self = .Null
+                self = .null
             default:
-                self = .None
+                self = .none
             }
         } else {
-            self = .None
+            self = .none
         }
     }
     
     subscript(index: Int) -> JSON {
         get {
-            if case .Array(let array) = self {
+            if case .array(let array) = self {
                 if index >= 0 && index < array.count {
                     return JSON(array[index])
                 }
                 
-                return .None
+                return .none
             }
             
-            return .None
+            return .none
         }
     }
     
     subscript(key: String) -> JSON {
         get {
-            if case .Object(let object) = self {
+            if case .object(let object) = self {
                 return JSON(object[key])
             }
             
-            return .None
+            return .none
         }
     }
 }
 
 extension JSON {
     var string: String? {
-        if case .JString(let object) = self {
+        if case .jString(let object) = self {
             return object
         }
         
-        return .None
+        return .none
     }
     
     var int: Int? {
-        if case .Number(let object) = self {
-            return object.integerValue
+        if case .number(let object) = self {
+            return object.intValue
         }
         
-        return .None
+        return .none
     }
 }

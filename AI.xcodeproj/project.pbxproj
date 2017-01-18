@@ -14,10 +14,6 @@
 		58391DF01BF5D25400ED0C87 /* PrivateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58391DEF1BF5D25400ED0C87 /* PrivateRequest.swift */; };
 		5846F60B1C919E870067A9B5 /* UserEntitiesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846F60A1C919E870067A9B5 /* UserEntitiesRequest.swift */; };
 		5846F60E1C929B7D0067A9B5 /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846F60D1C929B7D0067A9B5 /* SessionStorage.swift */; };
-		58D1E46E1BF9CC9700D257AA /* VoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E46D1BF9CC9700D257AA /* VoiceRequest.swift */; };
-		58D1E4701BF9CCA100D257AA /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E46F1BF9CCA100D257AA /* AudioRecorder.swift */; };
-		58D1E4721BF9CCAF00D257AA /* VoiceActivityDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E4711BF9CCAF00D257AA /* VoiceActivityDetection.swift */; };
-		58D1E4A41BF9F78400D257AA /* BufferedOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E4A31BF9F78400D257AA /* BufferedOutputStream.swift */; };
 		58D6091A1BF35B0B00464A87 /* AI.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D609191BF35B0B00464A87 /* AI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		58D609211BF35B0B00464A87 /* AI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D609161BF35B0B00464A87 /* AI.framework */; };
 		58D609261BF35B0B00464A87 /* AITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D609251BF35B0B00464A87 /* AITests.swift */; };
@@ -50,10 +46,6 @@
 		58391DEF1BF5D25400ED0C87 /* PrivateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRequest.swift; sourceTree = "<group>"; };
 		5846F60A1C919E870067A9B5 /* UserEntitiesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntitiesRequest.swift; sourceTree = "<group>"; };
 		5846F60D1C929B7D0067A9B5 /* SessionStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
-		58D1E46D1BF9CC9700D257AA /* VoiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRequest.swift; sourceTree = "<group>"; };
-		58D1E46F1BF9CCA100D257AA /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
-		58D1E4711BF9CCAF00D257AA /* VoiceActivityDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceActivityDetection.swift; sourceTree = "<group>"; };
-		58D1E4A31BF9F78400D257AA /* BufferedOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedOutputStream.swift; sourceTree = "<group>"; };
 		58D609161BF35B0B00464A87 /* AI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D609191BF35B0B00464A87 /* AI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AI.h; sourceTree = "<group>"; };
 		58D6091B1BF35B0B00464A87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				5846F60C1C929B6F0067A9B5 /* Utils */,
-				58D1E46C1BF9CC8C00D257AA /* VoiceRequest */,
 				58391DE71BF5D16500ED0C87 /* Request.swift */,
 				58391DE81BF5D16500ED0C87 /* RequestUtilites.swift */,
 				58391DEB1BF5D17700ED0C87 /* QueryRequest.swift */,
@@ -111,17 +102,6 @@
 				5846F60D1C929B7D0067A9B5 /* SessionStorage.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		58D1E46C1BF9CC8C00D257AA /* VoiceRequest */ = {
-			isa = PBXGroup;
-			children = (
-				58D1E46D1BF9CC9700D257AA /* VoiceRequest.swift */,
-				58D1E46F1BF9CCA100D257AA /* AudioRecorder.swift */,
-				58D1E4711BF9CCAF00D257AA /* VoiceActivityDetection.swift */,
-				58D1E4A31BF9F78400D257AA /* BufferedOutputStream.swift */,
-			);
-			path = VoiceRequest;
 			sourceTree = "<group>";
 		};
 		58D6090C1BF35B0B00464A87 = {
@@ -235,14 +215,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Kuragin Dmitriy";
 				TargetAttributes = {
 					58D609151BF35B0B00464A87 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0820;
 					};
 					58D6091F1BF35B0B00464A87 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -288,15 +270,11 @@
 			files = (
 				58391DEC1BF5D17700ED0C87 /* QueryRequest.swift in Sources */,
 				5846F60B1C919E870067A9B5 /* UserEntitiesRequest.swift in Sources */,
-				58D1E4A41BF9F78400D257AA /* BufferedOutputStream.swift in Sources */,
-				58D1E46E1BF9CC9700D257AA /* VoiceRequest.swift in Sources */,
 				58D6093E1BF47CBA00464A87 /* CallbacksContainer.swift in Sources */,
 				58D609341BF35B1D00464A87 /* Credentials.swift in Sources */,
 				58391DF01BF5D25400ED0C87 /* PrivateRequest.swift in Sources */,
-				58D1E4721BF9CCAF00D257AA /* VoiceActivityDetection.swift in Sources */,
 				5846F60E1C929B7D0067A9B5 /* SessionStorage.swift in Sources */,
 				58D6093C1BF47A9C00464A87 /* QueryResponse.swift in Sources */,
-				58D1E4701BF9CCA100D257AA /* AudioRecorder.swift in Sources */,
 				58D609431BF4865300464A87 /* Completion.swift in Sources */,
 				58D609331BF35B1D00464A87 /* AI.swift in Sources */,
 				58D609481BF4867500464A87 /* ResponseSerialize.swift in Sources */,
@@ -341,8 +319,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -389,8 +369,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -410,6 +392,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -420,6 +403,7 @@
 		58D6092B1BF35B0B00464A87 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -430,12 +414,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.speaktoit.AI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		58D6092C1BF35B0B00464A87 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -446,6 +432,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.speaktoit.AI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -458,6 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.speaktoit.AITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -469,6 +457,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.speaktoit.AITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

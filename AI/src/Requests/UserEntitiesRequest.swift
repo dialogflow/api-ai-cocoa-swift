@@ -16,8 +16,8 @@ public struct UserEntityEntry {
 extension UserEntityEntry {
     func jsonObject() -> [String: AnyObject] {
         return [
-            "value": value,
-            "synonyms": synonyms
+            "value": value as AnyObject,
+            "synonyms": synonyms as AnyObject
         ]
     }
 }
@@ -40,10 +40,10 @@ public struct UserEntity {
 }
 
 extension UserEntity {
-    func jsonObject() -> [String: AnyObject] {
-        var object: [String: AnyObject] = [
-            "name": name,
-            "entries": entries.map { (entry) -> [String: AnyObject] in
+    func jsonObject() -> [String: Any] {
+        var object: [String: Any] = [
+            "name": name as Any,
+            "entries": entries.map { (entry) -> [String: Any] in
                 entry.jsonObject()
             }
         ]
@@ -67,52 +67,52 @@ public extension UserEntitiesResponse {
     }
 }
 
-public class UserEntitiesRequest: Request, PrivateRequest {
-    weak var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? = .None
+open class UserEntitiesRequest: Request, PrivateRequest {
+    var started: Bool = false
+
+    weak var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? = .none
     
     let method: String = "userEntities"
-    var onceToken: dispatch_once_t = 0
-    var dataTask: NSURLSessionDataTask? = nil
+    var dataTask: URLSessionDataTask? = nil
     
     public typealias ResponseType = UserEntitiesResponse
     
-    public let credentials: Credentials
-    public let session: NSURLSession
+    open let credentials: Credentials
+    open let session: URLSession
     
-    private let entities: [UserEntity]
+    fileprivate let entities: [UserEntity]
     
-    init(credentials: Credentials, entities: [UserEntity], session: NSURLSession) {
+    init(credentials: Credentials, entities: [UserEntity], session: URLSession) {
         self.credentials = credentials
         self.session = session
         self.entities = entities
     }
     
-    private func serializeRequest() throws -> NSData {
-        let requestBody = self.entities.map { (entity) -> [String: AnyObject] in
+    fileprivate func serializeRequest() throws -> Data {
+        let requestBody = self.entities.map { (entity) -> [String: Any] in
             entity.jsonObject()
         }
         
-        return try NSJSONSerialization.dataWithJSONObject(requestBody, options: NSJSONWritingOptions(rawValue: 0))
+        return try JSONSerialization.data(withJSONObject: requestBody, options: JSONSerialization.WritingOptions(rawValue: 0))
     }
     
-    func runRequest() throws -> NSURLSessionDataTask {
+    func runRequest() throws -> URLSessionDataTask {
         let callbacksContainer = CallbacksContainer<RequestCompletion<ResponseType>>()
         
         self.callbacks = callbacksContainer
         
-        let request = self.request
+        var request = self.request
         
-        request.HTTPBody = try self.serializeRequest()
+        request.httpBody = try self.serializeRequest()
         
-        let dataTask = self.session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+        let dataTask = self.session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             let response = handle(data, response, error).next(serializeJSON).next(validateObject).next(userEntitiesResponseSerialize)
             
             switch response {
-            case .Success(let object):
-                callbacksContainer.resolve(.Success(object))
-            case .Failure(let error):
-                let nsError = error.asNSError()
-                callbacksContainer.resolve(.Failure(nsError))
+            case .success(let object):
+                callbacksContainer.resolve(.success(object))
+            case .failure(let error):
+                callbacksContainer.resolve(.failure(error))
             }
         })
         
@@ -121,42 +121,42 @@ public class UserEntitiesRequest: Request, PrivateRequest {
         return dataTask
     }
     
-    private func run(completionHandler: (RequestCompletion<ResponseType>) -> Void) {
+    fileprivate func run(_ completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) {
         self.privateResume(completionHandler)
     }
     
-    public func resume(completionHandler: (RequestCompletion<ResponseType>) -> Void) -> Self {
+    open func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self {
         // TODO: Replace run-function with the following call.
         //        (self as TextQueryRequest).privateResume(completionHandler)
         self.run(completionHandler)
         return self
     }
     
-    public func cancel() {
-        let cancelError = NSError(code: .RequestUserCancelled, message: "Request user cancelled.")
+    open func cancel() {
+        let cancelError = NSError(code: .requestUserCancelled, message: "Request user cancelled.")
         
-        callbacks?.resolve(.Failure(cancelError))
+        callbacks?.resolve(.failure(cancelError))
         
         dataTask?.cancel()
     }
 }
 
-func userEntitiesResponseSerialize(object: [String: AnyObject]) -> Completion<UserEntitiesResponse> {
+func userEntitiesResponseSerialize(_ object: [String: Any]) -> Completion<UserEntitiesResponse> {
     guard let statusObject = object["status"] else {
-        return .Failure(SerializeError.MissingKey("status"))
+        return .failure(SerializeError.missingKey("status"))
     }
     
     guard let status = statusObject as? [String: AnyObject] else {
-        return .Failure(SerializeError.TypeMismatch("status"))
+        return .failure(SerializeError.typeMismatch("status"))
     }
     
     guard let code = status["code"] as? Int else {
-        return .Failure(SerializeError.MissingKey("code"))
+        return .failure(SerializeError.missingKey("code"))
     }
     
     guard let errorType = status["errorType"] as? String else {
-        return .Failure(SerializeError.MissingKey("errorType"))
+        return .failure(SerializeError.missingKey("errorType"))
     }
     
-    return .Success(UserEntitiesResponse(code: code, errorType: errorType))
+    return .success(UserEntitiesResponse(code: code, errorType: errorType))
 }

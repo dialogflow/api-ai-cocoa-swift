@@ -11,22 +11,22 @@ import Foundation
 public let AIErrorDomain: String = "AIErrorDomain"
 
 public enum AIErrorCode: Int {
-    case UnknownError
+    case unknownError
     
-    case ResponseSerializeMissingKey
-    case ResponseSerializeTypeMismatch
-    case ResponseBodyEmpty
+    case responseSerializeMissingKey
+    case responseSerializeTypeMismatch
+    case responseBodyEmpty
     
-    case RequestSerializeMissingKey
-    case RequestSerializeTypeMismatch
+    case requestSerializeMissingKey
+    case requestSerializeTypeMismatch
     
-    case ResponseObjectEmpty
-    case ResponseDataEmpty
-    case MIMETypeEmpty
-    case UnexpectedMIMEType
-    case WrongResponseObjectType
+    case responseObjectEmpty
+    case responseDataEmpty
+    case mimeTypeEmpty
+    case unexpectedMIMEType
+    case wrongResponseObjectType
     
-    case RequestUserCancelled
+    case requestUserCancelled
 }
 
 internal extension NSError {
@@ -42,7 +42,7 @@ internal extension NSError {
 internal extension NSError {
     convenience init(forHTTPStatusCode statusCode: Int) {
         let userInfo = [
-            NSLocalizedDescriptionKey: NSHTTPURLResponse.localizedStringForStatusCode(statusCode)
+            NSLocalizedDescriptionKey: HTTPURLResponse.localizedString(forStatusCode: statusCode)
         ]
         
         self.init(domain: NSURLErrorDomain, code: statusCode, userInfo: userInfo)
@@ -51,6 +51,6 @@ internal extension NSError {
 
 internal extension NSError {
     convenience init(forErrorString errorString: String) {
-        self.init(code: AIErrorCode.UnknownError, message: errorString)
+        self.init(code: AIErrorCode.unknownError, message: errorString)
     }
 }

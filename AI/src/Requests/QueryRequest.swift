@@ -9,49 +9,49 @@
 import Foundation
 
 public enum Language {
-    case English
-    case Spanish
-    case Russian
-    case German
-    case Portuguese
-    case Portuguese_Brazil
-    case French
-    case Italian
-    case Japanese
-    case Korean
-    case Chinese_Simplified
-    case Chinese_HongKong
-    case Chinese_Taiwan
+    case english
+    case spanish
+    case russian
+    case german
+    case portuguese
+    case portuguese_Brazil
+    case french
+    case italian
+    case japanese
+    case korean
+    case chinese_Simplified
+    case chinese_HongKong
+    case chinese_Taiwan
 }
 
 extension Language {
     var stringValue: String {
         switch self {
-        case .English:
+        case .english:
             return "en"
-        case .Spanish:
+        case .spanish:
             return "es"
-        case .Russian:
+        case .russian:
             return "ru"
-        case .German:
+        case .german:
             return "de"
-        case .Portuguese:
+        case .portuguese:
             return "pt"
-        case .Portuguese_Brazil:
+        case .portuguese_Brazil:
             return "pt-BR"
-        case .French:
+        case .french:
             return "fr"
-        case .Italian:
+        case .italian:
             return "it"
-        case .Japanese:
+        case .japanese:
             return "ja"
-        case .Korean:
+        case .korean:
             return "ko"
-        case .Chinese_Simplified:
+        case .chinese_Simplified:
             return "zh-CN"
-        case .Chinese_HongKong:
+        case .chinese_HongKong:
             return "zh-HK"
-        case .Chinese_Taiwan:
+        case .chinese_Taiwan:
             return "zh-TW"
         }
     }
@@ -76,7 +76,7 @@ public struct Entry {
 }
 
 public struct Entity {
-    public var id: String? = .None
+    public var id: String? = .none
     public var name: String
     public var entries: [Entry]
 }
@@ -85,17 +85,17 @@ public struct QueryParameters {
     public var contexts: [Context] = []
     public var resetContexts: Bool = false
     public var sessionId: String? = SessionStorage.defaultSessionIdentifier
-    public var timeZone: NSTimeZone? = NSTimeZone.localTimeZone()
+    public var timeZone: TimeZone? = TimeZone.autoupdatingCurrent
     public var entities: [Entity] = []
     
     public init() {}
 }
 
 extension QueryParameters {
-    func jsonObject() -> [String: AnyObject] {
-        var parameters = [String: AnyObject]()
+    func jsonObject() -> [String: Any] {
+        var parameters = [String: Any]()
         
-        parameters["contexts"] = contexts.map({ (context) -> [String: AnyObject] in
+        parameters["contexts"] = contexts.map({ (context) -> [String: Any] in
             return ["name": context.name, "parameters": context.parameters]
         })
         
@@ -106,14 +106,14 @@ extension QueryParameters {
         }
         
         if let timeZone = timeZone {
-            parameters["timezone"] = timeZone.name
+            parameters["timezone"] = timeZone.identifier
         }
         
-        parameters["entities"] = entities.map({ (entity) -> [String: AnyObject] in
-            var entityObject = [String: AnyObject]()
+        parameters["entities"] = entities.map({ (entity) -> [String: Any] in
+            var entityObject = [String: Any]()
             
             entityObject["name"] = entity.name
-            entityObject["entries"] = entity.entries.map({ (entry) -> [String:AnyObject] in
+            entityObject["entries"] = entity.entries.map({ (entry) -> [String:Any] in
                 ["value": entry.value, "synonyms": entry.synonyms]
             })
             
