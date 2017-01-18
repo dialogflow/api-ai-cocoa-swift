@@ -1,0 +1,26 @@
+language: swift
+osx_image: xcode8.2
+bundler_args: --retry 3
+git:
+  depth: 2
+branches:
+  only:
+    - master
+    - dev
+xcode_project: AI.xcodeproj
+xcode_scheme: AI
+xcode_sdk: iphonesimulator
+env:
+  global:
+    - FRAMEWORK_NAME=AI
+before_install:
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
+notifications:
+  email:
+    recipients:
+      - dkuragin@ya.ru
+      - kuragin@speaktoit.com
