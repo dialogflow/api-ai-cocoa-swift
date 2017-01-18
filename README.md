@@ -1,7 +1,7 @@
 iOS SDK for api.ai
 ==============
 
-<!-- [![Build Status](https://travis-ci.org/api-ai/api-ai-ios-sdk.svg)](https://travis-ci.org/api-ai/api-ai-cocoa-swift) -->
+[![Build Status](https://travis-ci.org/api-ai/api-ai-ios-sdk.svg)](https://travis-ci.org/api-ai/api-ai-cocoa-swift)
 [![Version](https://img.shields.io/cocoapods/v/AI.svg?style=flat)](http://cocoapods.org/pods/AI)
 [![License](https://img.shields.io/cocoapods/l/AI.svg?style=flat)](http://cocoapods.org/pods/AI)
 [![Platform](https://img.shields.io/cocoapods/p/AI.svg?style=flat)](http://cocoapods.org/pods/AI)
@@ -15,14 +15,14 @@ iOS SDK for api.ai
 ---------------
 
 ## <a name="overview"></a>Overview
-The API.AI iOS SDK makes it easy to integrate speech recognition with API.AI natural language processing API on iOS devices. API.AI allows using voice commands and integration with dialog scenarios defined for a particular agent in API.AI.
+The API.AI iOS SDK makes it easy to integrate natural language processing API on Apple devices. API.AI allows using voice commands and integration with dialog scenarios defined for a particular agent in API.AI.
 
 ## <a name="prerequisites"></a>Prerequsites
 * Create an [API.AI account](http://api.ai)
-* Install [CocoaPods](http://cocoapods.org/)
+* Install [CocoaPods](#cocoapods) or [Carthage](#carthage)
 
 
-## <a name="runningthedemoapp"></a>Running the Demo app
+## <a name="runningthedemoapp"></a>Running the Demo app (CocoaPods supports only)
 * Run ```pod update``` in the AIDemo project folder.
 * Open **AIDemo.xworkspace** in Xcode.
 * In **AppDelegate** insert API key.
@@ -39,7 +39,7 @@ The API.AI iOS SDK makes it easy to integrate speech recognition with API.AI nat
 
 ## <a name="integratingintoyourapp"></a>Integrating into your app
 
-### Using CocoaPods
+### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Swift and Objective-C Cocoa projects. Installing:
 
@@ -65,7 +65,7 @@ Now you can install the dependencies in your project:
 $ pod install
 ```
 
-### Using Carthage
+### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is intended to be the simplest way to add frameworks to your Cocoa application.
 
@@ -97,7 +97,8 @@ AI.configure("YOUR_CLIENT_ACCESS_TOKEN")
 
 ```Swift
 ...
-// Request using text (assumes that speech recognition / ASR is done using a third-party library, e.g. AT&T)
+// Request using text (assumes that speech recognition / ASR
+// is done using a third-party library, e.g. AT&T)
 AI.sharedService.TextRequest("Hello").success { (response) -> Void in
     // Handle success ...
 }.failure { (error) -> Void in
