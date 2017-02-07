@@ -8,38 +8,21 @@
 
 import Foundation
 
+public struct TextQueryElement {
+    public var text: String
+    public var confidence: Double
+}
+
 public enum TextQueryType {
     case one(String)
-    case array([String])
-}
-
-extension TextQueryType {
-    var JSON: AnyObject {
-        switch self {
-        case .one(let object):
-            return object as AnyObject
-        case .array(let object):
-            return object as AnyObject
-        }
-    }
-}
-
-extension TextQueryType {
-    func jsonObject() -> AnyObject {
-        switch self {
-        case .one(let object):
-            return object as AnyObject
-        case .array(let object):
-            return object as AnyObject
-        }
-    }
+    case array([TextQueryElement])
 }
 
 public protocol TextQueryRequestType : QueryRequest {
     var query: TextQueryType { get }
 }
 
-open class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContainer {
+public class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContainer {
     internal var started: Bool = false
 
     //private properties
@@ -53,14 +36,14 @@ open class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContaine
     
     public typealias ResponseType = QueryResponse
     
-    open let credentials: Credentials
-    open let session: URLSession
+    public let credentials: Credentials
+    public let session: URLSession
     
-    open var queryParameters: QueryParameters
+    public var queryParameters: QueryParameters
     
-    open let query: TextQueryType
+    public let query: TextQueryType
     
-    open let language: Language
+    public let language: Language
     
     public init(query: TextQueryType, credentials: Credentials, queryParameters: QueryParameters, session: URLSession, language: Language) {
         self.query = query
@@ -74,7 +57,7 @@ open class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContaine
         self.init(query: .one(query), credentials: credentials, queryParameters: queryParameters, session: session, language: language)
     }
     
-    public convenience init(query: [String], credentials: Credentials, queryParameters: QueryParameters, session: URLSession, language: Language) {
+    public convenience init(query: [TextQueryElement], credentials: Credentials, queryParameters: QueryParameters, session: URLSession, language: Language) {
         self.init(query: .array(query), credentials: credentials, queryParameters: queryParameters, session: session, language: language)
     }
     
@@ -85,7 +68,22 @@ open class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContaine
         
         var request = self.request
         
-        request.httpBody = try self.jsonRequestParameters(["query": query.jsonObject()])
+        var requestJson: [String:Any] = [:];
+        
+        switch query {
+        case .one(let text):
+            requestJson["query"] = text;
+        case .array(let array):
+            requestJson["query"] = array.map({ (element) -> String in
+                return element.text
+            })
+            
+            requestJson["confidence"] = array.map({ (element) -> Double in
+                return element.confidence
+            })
+        }
+        
+        request.httpBody = try self.jsonRequestParameters(requestJson as [String: AnyObject])
         
         let dataTask = self.session.dataTask(with: request) { (data, response, error) in
             callbacksContainer.resolve(self.handleQueryResponse(data, response, error))
@@ -100,14 +98,14 @@ open class TextQueryRequest: TextQueryRequestType, PrivateRequest, QueryContaine
         self.privateResume(completionHandler)
     }
     
-    open func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self {
+    public func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self {
         // TODO: Replace run-function with the following call.
 //        (self as TextQueryRequest).privateResume(completionHandler)
         self.run(completionHandler)
         return self
     }
     
-    open func cancel() {
+    public func cancel() {
         let cancelError = NSError(code: .requestUserCancelled, message: "Request user cancelled.")
         
         callbacks?.resolve(.failure(cancelError))

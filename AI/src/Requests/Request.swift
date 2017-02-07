@@ -30,6 +30,7 @@ public protocol Request: class {
     
     associatedtype ResponseType
     
+    @discardableResult
     func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self
     
     func cancel()
@@ -39,6 +40,7 @@ public extension Request {
     typealias SuccessCompletionHandler = (ResponseType) -> Void
     typealias FailureCompletionHandler = (Error) -> Void
     
+    @discardableResult
     func success(completionHandler: @escaping SuccessCompletionHandler) -> Self {
         return self.resume { (completion) -> Void in
             if case .success(let object) = completion {
@@ -47,6 +49,7 @@ public extension Request {
         }
     }
     
+    @discardableResult
     func failure(completionHandler: @escaping FailureCompletionHandler) -> Self {
         return self.resume { (completion) -> Void in
             if case .failure(let error) = completion {

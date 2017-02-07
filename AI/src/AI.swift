@@ -19,7 +19,7 @@ public struct AI {
     }
     
     public static var defaultQueryParameters: QueryParameters = QueryParameters()
-    public static var URLSession: Foundation.URLSession = Foundation.URLSession.shared
+    public static var session: URLSession = URLSession.shared
     
     public static func configure(_ credentials: Credentials) {
         self.credentials = credentials
@@ -39,7 +39,7 @@ extension AI {
     
     fileprivate static func retrieveSharedService() -> Service {
         if let credentials = AI.credentials {
-            return Service(credentials: credentials, URLSession: URLSession, defaultQueryParameters: defaultQueryParameters, language: language)
+            return Service(credentials: credentials, session: session, defaultQueryParameters: defaultQueryParameters, language: language)
         } else {
             fatalError("Library should be configured. Use AI.configure methods.")
         }

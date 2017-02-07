@@ -31,8 +31,6 @@ protocol PrivateRequest: class {
 
 extension PrivateRequest {
     func privateResume(_ completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) {
-        callbacks?.put(completionHandler)
-        
         if (!started) {
             started = true
             
@@ -42,6 +40,8 @@ extension PrivateRequest {
                 self.callbacks?.resolve(.failure(error))
             }
         }
+        
+        callbacks?.put(completionHandler)
     }
 }
 

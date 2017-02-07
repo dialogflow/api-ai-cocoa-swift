@@ -11,6 +11,11 @@ import Foundation
 public struct UserEntityEntry {
     public var value: String
     public var synonyms: [String]
+    
+    public init(value: String, synonyms: [String]) {
+        self.value = value
+        self.synonyms = synonyms
+    }
 }
 
 extension UserEntityEntry {
@@ -26,6 +31,7 @@ public struct UserEntity {
     public var sessionId: String? = SessionStorage.defaultSessionIdentifier
     public var name: String
     public var entries: [UserEntityEntry]
+    public var extend: Bool = false
     
     public init(sessionId: String?, name: String, entries: [UserEntityEntry]) {
         self.sessionId = sessionId
@@ -52,6 +58,8 @@ extension UserEntity {
             object["sessionId"] = sessionId
         }
         
+        object["extend"] = extend
+        
         return object
     }
 }
@@ -67,7 +75,7 @@ public extension UserEntitiesResponse {
     }
 }
 
-open class UserEntitiesRequest: Request, PrivateRequest {
+public class UserEntitiesRequest: Request, PrivateRequest {
     var started: Bool = false
 
     weak var callbacks: CallbacksContainer<RequestCompletion<ResponseType>>? = .none
@@ -77,8 +85,8 @@ open class UserEntitiesRequest: Request, PrivateRequest {
     
     public typealias ResponseType = UserEntitiesResponse
     
-    open let credentials: Credentials
-    open let session: URLSession
+    public let credentials: Credentials
+    public let session: URLSession
     
     fileprivate let entities: [UserEntity]
     
@@ -125,14 +133,14 @@ open class UserEntitiesRequest: Request, PrivateRequest {
         self.privateResume(completionHandler)
     }
     
-    open func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self {
+    public func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self {
         // TODO: Replace run-function with the following call.
         //        (self as TextQueryRequest).privateResume(completionHandler)
         self.run(completionHandler)
         return self
     }
     
-    open func cancel() {
+    public func cancel() {
         let cancelError = NSError(code: .requestUserCancelled, message: "Request user cancelled.")
         
         callbacks?.resolve(.failure(cancelError))
