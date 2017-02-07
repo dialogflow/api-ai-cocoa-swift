@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		582FAD161E49BCD3008DADF2 /* AI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AI.podspec; sourceTree = "<group>"; };
 		58391DE71BF5D16500ED0C87 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		58391DE81BF5D16500ED0C87 /* RequestUtilites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestUtilites.swift; sourceTree = "<group>"; };
 		58391DEB1BF5D17700ED0C87 /* QueryRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryRequest.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		58D6090C1BF35B0B00464A87 = {
 			isa = PBXGroup;
 			children = (
+				582FAD161E49BCD3008DADF2 /* AI.podspec */,
 				58D609181BF35B0B00464A87 /* AI */,
 				58D609241BF35B0B00464A87 /* AITests */,
 				58D609171BF35B0B00464A87 /* Products */,
