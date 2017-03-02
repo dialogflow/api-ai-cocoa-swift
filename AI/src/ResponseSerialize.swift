@@ -47,13 +47,32 @@ func objectForKeyOrNull<T>(_ key: String, dict: [String: Any]) -> T? {
     }
 }
 
+struct MessageSerializer: Serializer {
+    typealias Destination = Message
+    
+    func serialize(_ source: Dictionary<String, Any>) throws -> Message {
+        let type: Int = try objectForKey("type", dict: source)
+        let speech: String = try objectForKey("speech", dict: source)
+        
+        return Message(type: type, speech: speech)
+    }
+}
+
 struct FulfillmentSerializer: Serializer {
     typealias Destination = Fulfillment
     
     func serialize(_ source: FulfillmentSerializer.Source) throws -> FulfillmentSerializer.Destination {
         let speech: String = try objectForKey("speech", dict: source)
         
-        return Destination(speech: speech)
+        let messageSerializer = MessageSerializer()
+        
+        let sourceMessages: [[String:Any]] = objectForKeyOrNull("messages", dict: source) ?? []
+        
+        let messages = try sourceMessages.map { (sourceMessage) -> Message in
+            return try messageSerializer.serialize(sourceMessage)
+        }
+        
+        return Destination(speech: speech, messages: messages)
     }
 }
 

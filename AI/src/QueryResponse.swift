@@ -8,8 +8,14 @@
 
 import Foundation
 
+public struct Message {
+    public let type: Int
+    public let speech: String
+}
+
 public struct Fulfillment {
     public let speech: String
+    public let messages: [Message]
 }
 
 public struct Metadata {
