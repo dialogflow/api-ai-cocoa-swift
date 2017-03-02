@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'AI'
-  s.version = '0.0.7'
+  s.version = '0.0.8'
   s.license = 'MIT'
   s.summary = 'The API.AI iOS SDK makes it easy to integrate speech recognition with API.AI natural language processing API on iOS devices.'
   s.homepage = 'https://api.ai/'
