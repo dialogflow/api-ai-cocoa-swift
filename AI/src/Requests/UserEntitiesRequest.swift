@@ -133,6 +133,7 @@ public class UserEntitiesRequest: Request, PrivateRequest {
         self.privateResume(completionHandler)
     }
     
+    @discardableResult
     public func resume(completionHandler: @escaping (RequestCompletion<ResponseType>) -> Void) -> Self {
         // TODO: Replace run-function with the following call.
         //        (self as TextQueryRequest).privateResume(completionHandler)

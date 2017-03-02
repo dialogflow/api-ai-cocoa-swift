@@ -9,50 +9,23 @@
 /* Begin PBXBuildFile section */
 		814FCDEDB2AB39641B204B86 /* Pods_AIOSXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA2F26F1FF3989B924EEA38 /* Pods_AIOSXDemo.framework */; };
 		CE5E742B1C1A79E400890183 /* TextRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E742A1C1A79E400890183 /* TextRequestViewController.swift */; };
-		CE5E742D1C1A8BF400890183 /* VoiceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E742C1C1A8BF400890183 /* VoiceRequestViewController.swift */; };
 		CEABF95C1C1990AB004BCF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABF95B1C1990AB004BCF62 /* AppDelegate.swift */; };
 		CEABF95E1C1990AB004BCF62 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABF95D1C1990AB004BCF62 /* LandingViewController.swift */; };
 		CEABF9601C1990AB004BCF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEABF95F1C1990AB004BCF62 /* Assets.xcassets */; };
 		CEABF9631C1990AC004BCF62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEABF9611C1990AC004BCF62 /* Main.storyboard */; };
-		CEABF96E1C1990AC004BCF62 /* AIOSXDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABF96D1C1990AC004BCF62 /* AIOSXDemoTests.swift */; };
-		CEABF9791C1990AC004BCF62 /* AIOSXDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABF9781C1990AC004BCF62 /* AIOSXDemoUITests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CEABF96A1C1990AC004BCF62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEABF9501C1990AB004BCF62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEABF9571C1990AB004BCF62;
-			remoteInfo = AIOSXDemo;
-		};
-		CEABF9751C1990AC004BCF62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEABF9501C1990AB004BCF62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEABF9571C1990AB004BCF62;
-			remoteInfo = AIOSXDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2DA2F26F1FF3989B924EEA38 /* Pods_AIOSXDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AIOSXDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C7D49D1CB9FB37E0F633D82 /* Pods-AIOSXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIOSXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AIOSXDemo/Pods-AIOSXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7739E50E38EF7232DAB45666 /* Pods-AIOSXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIOSXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AIOSXDemo/Pods-AIOSXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE5E742A1C1A79E400890183 /* TextRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRequestViewController.swift; sourceTree = "<group>"; };
-		CE5E742C1C1A8BF400890183 /* VoiceRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRequestViewController.swift; sourceTree = "<group>"; };
 		CEABF9581C1990AB004BCF62 /* AIOSXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIOSXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEABF95B1C1990AB004BCF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEABF95D1C1990AB004BCF62 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		CEABF95F1C1990AB004BCF62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEABF9621C1990AC004BCF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEABF9641C1990AC004BCF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEABF9691C1990AC004BCF62 /* AIOSXDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIOSXDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEABF96D1C1990AC004BCF62 /* AIOSXDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIOSXDemoTests.swift; sourceTree = "<group>"; };
-		CEABF96F1C1990AC004BCF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEABF9741C1990AC004BCF62 /* AIOSXDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIOSXDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEABF9781C1990AC004BCF62 /* AIOSXDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIOSXDemoUITests.swift; sourceTree = "<group>"; };
-		CEABF97A1C1990AC004BCF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,20 +34,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				814FCDEDB2AB39641B204B86 /* Pods_AIOSXDemo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEABF9661C1990AC004BCF62 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEABF9711C1990AC004BCF62 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,8 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				CEABF95A1C1990AB004BCF62 /* AIOSXDemo */,
-				CEABF96C1C1990AC004BCF62 /* AIOSXDemoTests */,
-				CEABF9771C1990AC004BCF62 /* AIOSXDemoUITests */,
 				CEABF9591C1990AB004BCF62 /* Products */,
 				7C63D67ACA7DBAC4A42F4D49 /* Pods */,
 				C34C831AFCFE22B65A72910C /* Frameworks */,
@@ -114,8 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				CEABF9581C1990AB004BCF62 /* AIOSXDemo.app */,
-				CEABF9691C1990AC004BCF62 /* AIOSXDemoTests.xctest */,
-				CEABF9741C1990AC004BCF62 /* AIOSXDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,30 +81,11 @@
 				CEABF95B1C1990AB004BCF62 /* AppDelegate.swift */,
 				CEABF95D1C1990AB004BCF62 /* LandingViewController.swift */,
 				CE5E742A1C1A79E400890183 /* TextRequestViewController.swift */,
-				CE5E742C1C1A8BF400890183 /* VoiceRequestViewController.swift */,
 				CEABF95F1C1990AB004BCF62 /* Assets.xcassets */,
 				CEABF9641C1990AC004BCF62 /* Info.plist */,
 				CEABF9611C1990AC004BCF62 /* Main.storyboard */,
 			);
 			path = AIOSXDemo;
-			sourceTree = "<group>";
-		};
-		CEABF96C1C1990AC004BCF62 /* AIOSXDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				CEABF96D1C1990AC004BCF62 /* AIOSXDemoTests.swift */,
-				CEABF96F1C1990AC004BCF62 /* Info.plist */,
-			);
-			path = AIOSXDemoTests;
-			sourceTree = "<group>";
-		};
-		CEABF9771C1990AC004BCF62 /* AIOSXDemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CEABF9781C1990AC004BCF62 /* AIOSXDemoUITests.swift */,
-				CEABF97A1C1990AC004BCF62 /* Info.plist */,
-			);
-			path = AIOSXDemoUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,12 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEABF97D1C1990AC004BCF62 /* Build configuration list for PBXNativeTarget "AIOSXDemo" */;
 			buildPhases = (
-				31EB21B9F098C6B3ACFBDC26 /* Check Pods Manifest.lock */,
+				31EB21B9F098C6B3ACFBDC26 /* [CP] Check Pods Manifest.lock */,
 				CEABF9541C1990AB004BCF62 /* Sources */,
 				CEABF9551C1990AB004BCF62 /* Frameworks */,
 				CEABF9561C1990AB004BCF62 /* Resources */,
-				901F1021474427752AC8EA20 /* Embed Pods Frameworks */,
-				96703AD7B15DAAE83FA78C40 /* Copy Pods Resources */,
+				901F1021474427752AC8EA20 /* [CP] Embed Pods Frameworks */,
+				96703AD7B15DAAE83FA78C40 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,42 +111,6 @@
 			productReference = CEABF9581C1990AB004BCF62 /* AIOSXDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CEABF9681C1990AC004BCF62 /* AIOSXDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CEABF9801C1990AC004BCF62 /* Build configuration list for PBXNativeTarget "AIOSXDemoTests" */;
-			buildPhases = (
-				CEABF9651C1990AC004BCF62 /* Sources */,
-				CEABF9661C1990AC004BCF62 /* Frameworks */,
-				CEABF9671C1990AC004BCF62 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CEABF96B1C1990AC004BCF62 /* PBXTargetDependency */,
-			);
-			name = AIOSXDemoTests;
-			productName = AIOSXDemoTests;
-			productReference = CEABF9691C1990AC004BCF62 /* AIOSXDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CEABF9731C1990AC004BCF62 /* AIOSXDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CEABF9831C1990AC004BCF62 /* Build configuration list for PBXNativeTarget "AIOSXDemoUITests" */;
-			buildPhases = (
-				CEABF9701C1990AC004BCF62 /* Sources */,
-				CEABF9711C1990AC004BCF62 /* Frameworks */,
-				CEABF9721C1990AC004BCF62 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CEABF9761C1990AC004BCF62 /* PBXTargetDependency */,
-			);
-			name = AIOSXDemoUITests;
-			productName = AIOSXDemoUITests;
-			productReference = CEABF9741C1990AC004BCF62 /* AIOSXDemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,19 +118,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Api.ai;
 				TargetAttributes = {
 					CEABF9571C1990AB004BCF62 = {
 						CreatedOnToolsVersion = 7.2;
-					};
-					CEABF9681C1990AC004BCF62 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = CEABF9571C1990AB004BCF62;
-					};
-					CEABF9731C1990AC004BCF62 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = CEABF9571C1990AB004BCF62;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -248,8 +141,6 @@
 			projectRoot = "";
 			targets = (
 				CEABF9571C1990AB004BCF62 /* AIOSXDemo */,
-				CEABF9681C1990AC004BCF62 /* AIOSXDemoTests */,
-				CEABF9731C1990AC004BCF62 /* AIOSXDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -264,46 +155,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEABF9671C1990AC004BCF62 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEABF9721C1990AC004BCF62 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		31EB21B9F098C6B3ACFBDC26 /* Check Pods Manifest.lock */ = {
+		31EB21B9F098C6B3ACFBDC26 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		901F1021474427752AC8EA20 /* Embed Pods Frameworks */ = {
+		901F1021474427752AC8EA20 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,14 +188,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AIOSXDemo/Pods-AIOSXDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		96703AD7B15DAAE83FA78C40 /* Copy Pods Resources */ = {
+		96703AD7B15DAAE83FA78C40 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,41 +212,11 @@
 			files = (
 				CE5E742B1C1A79E400890183 /* TextRequestViewController.swift in Sources */,
 				CEABF95E1C1990AB004BCF62 /* LandingViewController.swift in Sources */,
-				CE5E742D1C1A8BF400890183 /* VoiceRequestViewController.swift in Sources */,
 				CEABF95C1C1990AB004BCF62 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEABF9651C1990AC004BCF62 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CEABF96E1C1990AC004BCF62 /* AIOSXDemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEABF9701C1990AC004BCF62 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CEABF9791C1990AC004BCF62 /* AIOSXDemoUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CEABF96B1C1990AC004BCF62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CEABF9571C1990AB004BCF62 /* AIOSXDemo */;
-			targetProxy = CEABF96A1C1990AC004BCF62 /* PBXContainerItemProxy */;
-		};
-		CEABF9761C1990AC004BCF62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CEABF9571C1990AB004BCF62 /* AIOSXDemo */;
-			targetProxy = CEABF9751C1990AC004BCF62 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CEABF9611C1990AC004BCF62 /* Main.storyboard */ = {
@@ -396,8 +243,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -440,8 +289,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -460,6 +311,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -467,12 +319,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7739E50E38EF7232DAB45666 /* Pods-AIOSXDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AIOSXDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.api.ai.AIOSXDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -480,64 +334,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C7D49D1CB9FB37E0F633D82 /* Pods-AIOSXDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AIOSXDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.api.ai.AIOSXDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		CEABF9811C1990AC004BCF62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = AIOSXDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.api.ai.AIOSXDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AIOSXDemo.app/Contents/MacOS/AIOSXDemo";
-			};
-			name = Debug;
-		};
-		CEABF9821C1990AC004BCF62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = AIOSXDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.api.ai.AIOSXDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AIOSXDemo.app/Contents/MacOS/AIOSXDemo";
-			};
-			name = Release;
-		};
-		CEABF9841C1990AC004BCF62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = AIOSXDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.api.ai.AIOSXDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = AIOSXDemo;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		CEABF9851C1990AC004BCF62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = AIOSXDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.api.ai.AIOSXDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = AIOSXDemo;
-				USES_XCTRUNNER = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -558,24 +362,6 @@
 			buildConfigurations = (
 				CEABF97E1C1990AC004BCF62 /* Debug */,
 				CEABF97F1C1990AC004BCF62 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CEABF9801C1990AC004BCF62 /* Build configuration list for PBXNativeTarget "AIOSXDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEABF9811C1990AC004BCF62 /* Debug */,
-				CEABF9821C1990AC004BCF62 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CEABF9831C1990AC004BCF62 /* Build configuration list for PBXNativeTarget "AIOSXDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEABF9841C1990AC004BCF62 /* Debug */,
-				CEABF9851C1990AC004BCF62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

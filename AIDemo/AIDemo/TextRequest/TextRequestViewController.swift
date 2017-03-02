@@ -12,40 +12,42 @@ import AI
 class TextRequestViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     
-    private var response: QueryResponse? = .None
+    fileprivate var response: QueryResponse? = .none
     
-    @IBAction func send(sender: AnyObject) {
-        AI.sharedService.TextRequest(textField.text ?? "").success {[weak self] (response) -> Void in
+    @IBAction func send(_ sender: AnyObject) {
+        AI.sharedService.textRequest(textField.text ?? "").success {[weak self] (response) -> Void in
             self?.response = response
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self?.performSegueWithIdentifier("ShowResult", sender: self)
-            })
+            DispatchQueue.main.async { [weak self] in
+                if let sself = self {
+                    sself.performSegue(withIdentifier: "ShowResult", sender: sself)
+                }
+            }
         }.failure { (error) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 let alert = UIAlertController(
                     title: "Error",
                     message: error.localizedDescription,
-                    preferredStyle: .Alert
+                    preferredStyle: .alert
                 )
                 
                 alert.addAction(
                     UIAlertAction(
                         title: "Cancel",
-                        style: .Cancel,
-                        handler: .None
+                        style: .cancel,
+                        handler: .none
                     )
                 )
                 
-                self.presentViewController(
+                self.present(
                     alert,
                     animated: true,
-                    completion: .None
+                    completion: .none
                 )
             }
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if let _ = response {
             return true
         }
@@ -53,9 +55,9 @@ class TextRequestViewController: UIViewController {
         return false
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowResult" {
-            let resultViewController = segue.destinationViewController as! ResultViewController
+            let resultViewController = segue.destination as! ResultViewController
             resultViewController.result = response!
         }
     }

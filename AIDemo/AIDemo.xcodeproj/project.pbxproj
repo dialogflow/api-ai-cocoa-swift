@@ -14,7 +14,6 @@
 		58D1E4BD1BFC6BB400D257AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D1E4BB1BFC6BB400D257AA /* LaunchScreen.storyboard */; };
 		58D1E4C61BFC6D7200D257AA /* TextRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E4C51BFC6D7200D257AA /* TextRequestViewController.swift */; };
 		58D1E4C91BFC6E0100D257AA /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D1E4C81BFC6E0100D257AA /* ResultViewController.swift */; };
-		CE5E74301C1A987A00890183 /* VoiceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5E742F1C1A987A00890183 /* VoiceRequestViewController.swift */; };
 		EF171C8443E8B5AA44FA5594 /* Pods_AIDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D2689E82A65A36E929393F /* Pods_AIDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +29,6 @@
 		58D1E4BE1BFC6BB400D257AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58D1E4C51BFC6D7200D257AA /* TextRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRequestViewController.swift; sourceTree = "<group>"; };
 		58D1E4C81BFC6E0100D257AA /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
-		CE5E742F1C1A987A00890183 /* VoiceRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRequestViewController.swift; sourceTree = "<group>"; };
 		F182421779ABBD2542C80E0C /* Pods-AIDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AIDemo/Pods-AIDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +68,6 @@
 			children = (
 				58D1E4C41BFC6D6600D257AA /* TextRequest */,
 				58D1E4C71BFC6DF000D257AA /* Result */,
-				CE5E742E1C1A980D00890183 /* VoiceRequest */,
 				58D1E4B21BFC6BB400D257AA /* AppDelegate.swift */,
 				58D1E4B61BFC6BB400D257AA /* Main.storyboard */,
 				58D1E4B91BFC6BB400D257AA /* Assets.xcassets */,
@@ -105,14 +102,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		CE5E742E1C1A980D00890183 /* VoiceRequest */ = {
-			isa = PBXGroup;
-			children = (
-				CE5E742F1C1A987A00890183 /* VoiceRequestViewController.swift */,
-			);
-			path = VoiceRequest;
-			sourceTree = "<group>";
-		};
 		F6538459F510446765E5D455 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,12 +118,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58D1E4C11BFC6BB400D257AA /* Build configuration list for PBXNativeTarget "AIDemo" */;
 			buildPhases = (
-				2BEF95B8FF07C320FB0DC103 /* Check Pods Manifest.lock */,
+				2BEF95B8FF07C320FB0DC103 /* [CP] Check Pods Manifest.lock */,
 				58D1E4AB1BFC6BB400D257AA /* Sources */,
 				58D1E4AC1BFC6BB400D257AA /* Frameworks */,
 				58D1E4AD1BFC6BB400D257AA /* Resources */,
-				A937B83877837E2C3D229AC0 /* Embed Pods Frameworks */,
-				398F0DB78AD428D6AEA2AC37 /* Copy Pods Resources */,
+				A937B83877837E2C3D229AC0 /* [CP] Embed Pods Frameworks */,
+				398F0DB78AD428D6AEA2AC37 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,11 +141,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Kuragin Dmitriy";
 				TargetAttributes = {
 					58D1E4AE1BFC6BB400D257AA = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -192,29 +182,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2BEF95B8FF07C320FB0DC103 /* Check Pods Manifest.lock */ = {
+		2BEF95B8FF07C320FB0DC103 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		398F0DB78AD428D6AEA2AC37 /* Copy Pods Resources */ = {
+		398F0DB78AD428D6AEA2AC37 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,14 +212,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AIDemo/Pods-AIDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A937B83877837E2C3D229AC0 /* Embed Pods Frameworks */ = {
+		A937B83877837E2C3D229AC0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,7 +235,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				58D1E4C61BFC6D7200D257AA /* TextRequestViewController.swift in Sources */,
-				CE5E74301C1A987A00890183 /* VoiceRequestViewController.swift in Sources */,
 				58D1E4B31BFC6BB400D257AA /* AppDelegate.swift in Sources */,
 				58D1E4C91BFC6E0100D257AA /* ResultViewController.swift in Sources */,
 			);
@@ -286,8 +275,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -330,8 +321,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -350,6 +343,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -358,11 +352,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 214B739D944FBA0038FC493D /* Pods-AIDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AIDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.speaktoit.AIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -370,11 +366,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F182421779ABBD2542C80E0C /* Pods-AIDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AIDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.speaktoit.AIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

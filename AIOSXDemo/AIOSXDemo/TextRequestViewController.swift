@@ -15,33 +15,35 @@ class TextRequestViewController: NSViewController {
 
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
 
-    @IBAction func userDidTouchSendButton(sender: NSButton) {
+    @IBAction func userDidTouchSendButton(_ sender: NSButton) {
         self.outputTextField.stringValue = ""
 
         let query = self.inputTextField.stringValue
-        let request = AI.sharedService.TextRequest(query)
+        let request = AI.sharedService.textRequest(query)
         request.success { [weak self] (response) in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self?.outputTextField.stringValue = "\(response)"
             }
         }.failure { (error) in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 let alert = NSAlert(error: error)
-                alert.addButtonWithTitle("Cancel")
-                alert.alertStyle = NSAlertStyle.WarningAlertStyle
+                alert.addButton(withTitle: "Cancel")
+                alert.alertStyle = NSAlertStyle.warning
 
                 alert.runModal()
             }
-        }.resume { [weak self] (response) in
-            self?.progressIndicator.stopAnimation(self)
+        }.resume { [weak self] (_) in
+            if let sself = self {
+                sself.progressIndicator.stopAnimation(self)
 
-            self?.sendButton.enabled = true
-            self?.inputTextField.enabled = true
+                sself.sendButton.isEnabled = true
+                sself.inputTextField.isEnabled = true
+            }
         }
 
         self.progressIndicator.startAnimation(self)
 
-        self.sendButton.enabled = false
-        self.inputTextField.enabled = false
+        self.sendButton.isEnabled = false
+        self.inputTextField.isEnabled = false
     }
 }
