@@ -87,15 +87,12 @@ Paste the following lines in the bridging header file:
 #ifndef Header_h
 #define Header_h
 #import <ApiAI/ApiAI.h>
-#import <AI/AI.h>
-#import <ApiAI/AIDefaultConfiguration.h>
-#import <ApiAI/AIVoiceRequestButton.h>
 #endif /* Header_h */
 ```
 
 In XCode, click on your project file -> Build Settings -> Swift Compiler - General -> Objective-C Bridging Header. Specify the location of the header file in the field to the right. For example that might look like: 
 ```
-/Users/user/Documents/Your-Project
+/Users/user/Documents/MyProject/MyProject/Header.h
 ```
 
 ### Init the SDK.
