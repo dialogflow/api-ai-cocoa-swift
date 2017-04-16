@@ -79,6 +79,25 @@ github "api-ai/AI"
 Run `carthage update`.
 Drag the built `AI.framework` into your Xcode project.
 
+### Create a bridging header
+Create a bridging header by choosing File > New > File > (iOS, watchOS, tvOS, or macOS) > Source > Header File and save the header file in your project root directory. 
+
+Paste the following lines in the bridging header file:
+```
+#ifndef Header_h
+#define Header_h
+#import <ApiAI/ApiAI.h>
+#import <AI/AI.h>
+#import <ApiAI/AIDefaultConfiguration.h>
+#import <ApiAI/AIVoiceRequestButton.h>
+#endif /* Header_h */
+```
+
+In XCode, click on your project file -> Build Settings -> Swift Compiler - General -> Objective-C Bridging Header. Specify the location of the header file in the field to the right. For example that might look like: 
+```
+/Users/user/Documents/Your-Project
+```
+
 ### Init the SDK.
 
 In the ```AppDelegate.swift```, add AI import:
