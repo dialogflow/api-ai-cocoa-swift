@@ -1,6 +1,6 @@
 Cocoa SDK for api.ai
 ==============
-## This library is deprecated. Please use (API.AI's Apple Client library)[https://github.com/api-ai/apiai-apple-client]
+## This library is deprecated. Please use [API.AI's Apple Client library](https://github.com/api-ai/apiai-apple-client)
 
 [![Build Status](https://travis-ci.org/api-ai/api-ai-ios-sdk.svg?branch=master)](https://travis-ci.org/api-ai/api-ai-cocoa-swift)
 [![Version](https://img.shields.io/cocoapods/v/AI.svg?style=flat)](http://cocoapods.org/pods/AI)
