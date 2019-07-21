@@ -26,6 +26,10 @@ public struct Metadata {
 public struct Context {
     public let name: String
     public let parameters: [String: Any]
+    init(name: String, parameters: [String: Any]) {
+        self.name = name
+        self.parameters = parameters
+    }
 }
 
 public struct Result {
